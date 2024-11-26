@@ -1,10 +1,12 @@
-import data from "../../data/products.json"
+import ItemsList from "../../components/ItemsList"
+// import data from "../../data/products.json"
 import "./Home.css"
 
 function Home() {
   return (
     <div className="home">
-      <div>Home</div>
+      <ItemsList />
+      {/* <div>Home</div>
 
       {data.map((element) => (
         <div key={element.id} className="card">
@@ -18,7 +20,7 @@ function Home() {
             <p>{element.price}</p>
           </div>
         </div>
-      ))}
+      ))} */}
     </div>
   )
 }
