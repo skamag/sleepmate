@@ -9,7 +9,7 @@ function Home() {
       {data.map((element) => (
         <div key={element.id} className="card">
           <div className="imageContainer">
-            <img src={element.images}></img>
+            <img src={element.images[0]}></img>
           </div>
           <div className="textContainer">
             <p>{element.id}</p>
