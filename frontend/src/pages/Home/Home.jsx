@@ -1,7 +1,26 @@
-import "./Home.module.css"
+import data from "../../data/products.json"
+import "./Home.css"
 
 function Home() {
-  return <div>Home</div>
+  return (
+    <div className="home">
+      <div>Home</div>
+
+      {data.map((element) => (
+        <div key={element.id} className="card">
+          <div className="imageContainer">
+            <img src={element.images}></img>
+          </div>
+          <div className="textContainer">
+            <p>{element.id}</p>
+            <p>{element.name}</p>
+            <p>{element.description}</p>
+            <p>{element.price}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+  )
 }
 
 export default Home

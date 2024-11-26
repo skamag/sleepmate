@@ -1,0 +1,19 @@
+.home .card {
+  margin: 20px 0;
+  height: 200px;
+  display: flex;
+  gap: 20px;
+}
+.home .card .imageContainer {
+  display: flex;
+}
+.home .card .imageContainer img {
+  height: 100%;
+  display: flex;
+}
+.home .card .textContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 50%;
+}

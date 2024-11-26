@@ -1,4 +1,4 @@
-import "./Products.module.css"
+import "./Products.css"
 
 function Products() {
   return <div>Products</div>

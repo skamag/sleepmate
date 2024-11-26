@@ -1,4 +1,4 @@
-import "./Contact.module.css"
+import "./Contact.css"
 
 function Contact() {
   return <div>Contact</div>
