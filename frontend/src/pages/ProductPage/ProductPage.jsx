@@ -1,8 +1,11 @@
 import { useState } from "react"
+import data from "../../data/products.json"
 import "./ProductPage.css"
 
 function ProductPage() {
-  const listImages = ["/luftrenser-2.webp", "/luftrenser-1.webp"]
+  const [selectedItemIndex, setSelectedItemIndex] = useState(8)
+  const listImages = data[selectedItemIndex].images
+  // const listImages = ["/luftrenser-2.webp", "/luftrenser-1.webp"]
 
   // "States" for hvorvidt det finnes ulike bilder, størrelser og farger
   const [isImages, setIsImages] = useState(true)
@@ -25,6 +28,12 @@ function ProductPage() {
   // Funksjon for å endre dropdown-menyens tilstand
   const toggleDropdown = () => {
     dropdown ? setDropdown(false) : setDropdown(true)
+  }
+
+  const handleChangeItem = (e) => {
+    setSelectedItemIndex(e)
+    window.scroll(top)
+    dropdown && setDropdown(false)
   }
 
   return (
@@ -65,16 +74,19 @@ function ProductPage() {
           {/* Produktinformasjon og alternativer m.m. */}
           <article className="infoContainer">
             <header className="header">
-              <h1>Produktnavn</h1>
+              <h1>{data[selectedItemIndex].name}</h1>
+              {/* <h1>Produktnavn</h1> */}
               <p>Varenummer: xxx / Produktnr.: xxx</p>
             </header>
             <div className="priceContainer">
-              <h2>xx.xx kr</h2>
+              <h2>{data[selectedItemIndex].price} kr</h2>
+              {/* <h2>xx.xx kr</h2> */}
             </div>
             <div className="descriptionContainer">
               <p>
-                Lorem Ipsum er standard fylltekst i trykkeribransjen siden
-                1500-tallet.
+                {data[selectedItemIndex].description}
+                {/* Lorem Ipsum er standard fylltekst i trykkeribransjen siden
+                1500-tallet. */}
               </p>
             </div>
 
@@ -87,7 +99,8 @@ function ProductPage() {
                       <b>Størrelse:</b>
                     </div>
                     <div className="sizeButtons">
-                      {["Medium", "Large"].map((size, index) => (
+                      {/* {["Medium", "Large"].map((size, index) => ( */}
+                      {data[selectedItemIndex].sizes.map((size, index) => (
                         <button
                           key={index}
                           className={
@@ -111,7 +124,8 @@ function ProductPage() {
                       <b>Farge:</b>
                     </div>
                     <div className="colorButtons">
-                      {["#aaaaaa", "#ed8824", "#b724ed"].map((color, index) => (
+                      {/* {["#aaaaaa", "#ed8824", "#b724ed"].map((color, index) => ( */}
+                      {data[selectedItemIndex].colors.map((color, index) => (
                         <button
                           key={index}
                           className={
@@ -167,28 +181,43 @@ function ProductPage() {
         <div className="similarProductsContainer">
           <h1>Lignende produkter</h1>
           <div className="cardsContainer">
-            {[
+            {/* {[
               "/bærbar-hvitsøyemaskin.webp",
               "/aromaterapi-diffuser.webp",
               "/søvndagslyslampe-1.webp",
               "/søvnsensor.webp",
-            ].map((src, index) => (
-              <article className="card" key={index}>
-                <figure className="imageContainer">
-                  <img
-                    src={src}
-                    alt={`Lignende produkt ${index + 1}`}
-                    aria-label={`Se detaljer om lignende produkt ${index + 1}`}
-                  />
-                </figure>
-                <div className="textContainer">
-                  <p>Tittel</p>
-                  <p>
-                    <strong>Pris</strong>
-                  </p>
-                </div>
-              </article>
-            ))}
+            ].map((src, index) => ( */}
+            {data
+              .filter(
+                (item) =>
+                  item.category === "Smart-apparater" &&
+                  item.id !== data[selectedItemIndex].id
+              )
+              .slice(0, 4)
+              .map((item, index) => (
+                <article
+                  className="card"
+                  key={index}
+                  onClick={() => handleChangeItem(item.id)}
+                  // onClick={(index) => handleChangeItem(index)}
+                >
+                  <figure className="imageContainer">
+                    <img
+                      src={item.images[0]}
+                      alt={`Lignende produkt ${index + 1}`}
+                      aria-label={`Se detaljer om lignende produkt ${
+                        index + 1
+                      }`}
+                    />
+                  </figure>
+                  <div className="textContainer">
+                    <p>{item.name}</p>
+                    <p>
+                      <strong>{item.price} kr</strong>
+                    </p>
+                  </div>
+                </article>
+              ))}
           </div>
         </div>
       </div>

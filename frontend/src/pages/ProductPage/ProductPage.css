@@ -134,7 +134,7 @@
 }
 .similarProductsContainer .cardsContainer {
   display: grid;
-  grid-template-columns: auto auto auto auto;
+  grid-template-columns: repeat(4, 1fr);
   gap: 1.5rem;
 }
 .similarProductsContainer .cardsContainer .card {
@@ -156,9 +156,12 @@
   cursor: pointer;
 }
 .similarProductsContainer .cardsContainer .card .textContainer {
+  height: 100%;
   width: 100%;
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
+  gap: 0.25rem;
 }
 .similarProductsContainer .cardsContainer .card .textContainer p {
   width: fit-content;
@@ -218,7 +221,7 @@
     width: 100%;
   }
   .similarProductsContainer .cardsContainer {
-    grid-template-columns: auto auto;
+    grid-template-columns: repeat(2, 1fr);
   }
 }
 @media screen and (max-width: 600px) {
