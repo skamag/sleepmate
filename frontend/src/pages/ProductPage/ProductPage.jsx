@@ -4,20 +4,25 @@ import "./ProductPage.css"
 function ProductPage() {
   const listImages = ["/luftrenser-2.webp", "/luftrenser-1.webp"]
 
+  // "States" for hvorvidt det finnes ulike bilder, størrelser og farger
   const [isImages, setIsImages] = useState(true)
   const [isSizes, setIsSizes] = useState(true)
   const [isColors, setIsColors] = useState(true)
 
+  // "States" for å lagre valgte bilder, størrelser og farger
   const [selectedImageIndex, setSelectedImageIndex] = useState(0)
-  const [selectedColorIndex, setSelectedColorIndex] = useState(0)
   const [selectedSizeIndex, setSelectedSizeIndex] = useState(0)
+  const [selectedColorIndex, setSelectedColorIndex] = useState(0)
 
+  // "State" for dropdown meny
   const [dropdown, setDropdown] = useState(false)
 
-  const handleColorClick = (index) => setSelectedColorIndex(index)
-  const handleImageClick = (index) => setSelectedImageIndex(index)
-  const handleSizeClick = (index) => setSelectedSizeIndex(index)
+  // Funksjoner for å oppdatere valgt bilder, størrelse eller farge
+  const handleImageClick = (index) => setSelectedImageIndex(index) // Når et bilde klikkes
+  const handleSizeClick = (index) => setSelectedSizeIndex(index) // Når en størrelse klikkes
+  const handleColorClick = (index) => setSelectedColorIndex(index) // Når en farge klikkes
 
+  // Funksjon for å endre dropdown-menyens tilstand
   const toggleDropdown = () => {
     dropdown ? setDropdown(false) : setDropdown(true)
   }
@@ -26,31 +31,38 @@ function ProductPage() {
     <section className="productPage">
       <div className="componentContainer">
         <div className="productContainer">
+          {/* Bildeseksjon */}
           <div className="imageSection">
+            {/* Liste med miniatyrbilder */}
             <div className="imageListContainer">
               {listImages.map((src, index) => (
                 <button
                   className="listItem"
                   key={index}
                   onClick={() => handleImageClick(index)}
+                  aria-label={`Velg bilde ${index + 1}`} // Tilgjengelighetsattributt
+                  aria-pressed={index === selectedImageIndex}
                 >
                   <img
                     className={
                       index === selectedImageIndex ? "selected" : "not-selected"
                     }
                     src={src}
-                    alt={`Image ${index}`}
+                    alt={`Miniatyrbilde av produkt ${index + 1}`} // Beskriv bildet
                   />
                 </button>
               ))}
             </div>
+            {/* Valgt bilde */}
             <div className="imageContainer">
               <img
                 src={`${listImages[selectedImageIndex]}`}
-                alt="placeholderImage"
+                alt={`Valgt produktbilde ${selectedImageIndex + 1}`}
               />
             </div>
           </div>
+
+          {/* Produktinformasjon og alternativer m.m. */}
           <article className="infoContainer">
             <header className="header">
               <h1>Produktnavn</h1>
@@ -61,11 +73,12 @@ function ProductPage() {
             </div>
             <div className="descriptionContainer">
               <p>
-                Lorem Ipsum is simply dummy text of the printing and typesetting
-                industry. Lorem Ipsum has been the industry's standard dummy
-                text ever since the 1500s
+                Lorem Ipsum er standard fylltekst i trykkeribransjen siden
+                1500-tallet.
               </p>
             </div>
+
+            {/* Alternativer for størrelse og farge */}
             {(isSizes || isColors) && (
               <div className="alternativesContainer">
                 {isSizes && (
@@ -83,6 +96,8 @@ function ProductPage() {
                               : "not-selected"
                           }
                           onClick={() => handleSizeClick(index)}
+                          aria-label={`Velg størrelse ${size}`}
+                          aria-pressed={index === selectedSizeIndex}
                         >
                           {size}
                         </button>
@@ -106,6 +121,8 @@ function ProductPage() {
                           }
                           style={{ backgroundColor: color }}
                           onClick={() => handleColorClick(index)}
+                          aria-label={`Velg farge ${index + 1}`}
+                          aria-pressed={index === selectedColorIndex}
                         ></button>
                       ))}
                     </div>
@@ -113,32 +130,40 @@ function ProductPage() {
                 )}
               </div>
             )}
+
+            {/* Kjøpsknapp */}
             <div className="buttonContainer">
-              <button className="button">
-                <h3>Legg til i handlevogn</h3>
+              <button className="button" aria-label="Legg til i handlekurv">
+                <h3>Legg til i handlekurv</h3>
               </button>
             </div>
+
+            {/* Dropdown-knapp */}
             <button
               className="dropdownContainer"
               onClick={() => toggleDropdown()}
+              aria-label="Veksle dropdown"
+              aria-expanded={dropdown}
             >
               <h3 className="dropdownTitle">Dropdown tittel</h3>
               <div className="dropdownButton">
                 {dropdown ? <h2>&#8722;</h2> : <h2>&#43;</h2>}
               </div>
             </button>
+
+            {/* Dropdown-meny */}
             {dropdown && (
               <div className="dropdownParagraphContainer">
-                <p className="dropdownPargraph">
-                  Lorem Ipsum is simply dummy text of the printing and
-                  typesetting industry. Lorem Ipsum has been the industry's
-                  standard dummy text ever since the 1500s
+                <p className="dropdownParagraph">
+                  Lorem Ipsum er en fylltekst brukt i trykkeri- og
+                  designindustrien.
                 </p>
               </div>
             )}
           </article>
         </div>
 
+        {/* Lignende produkter-seksjon */}
         <div className="similarProductsContainer">
           <h1>Lignende produkter</h1>
           <div className="cardsContainer">
@@ -150,7 +175,11 @@ function ProductPage() {
             ].map((src, index) => (
               <article className="card" key={index}>
                 <figure className="imageContainer">
-                  <img src={src} alt={`Similar product ${index + 1}`} />
+                  <img
+                    src={src}
+                    alt={`Lignende produkt ${index + 1}`}
+                    aria-label={`Se detaljer om lignende produkt ${index + 1}`}
+                  />
                 </figure>
                 <div className="textContainer">
                   <p>Tittel</p>
