@@ -8,6 +8,29 @@ Backend-data er essensielt for prosjektet fordi det gir en strukturert måte å 
 
 Backend gir også muligheten til å håndtere autentisering, autorisering, og kommunikasjon mellom server og klient, noe som er avgjørende for en dynamisk og funksjonell nettbutikk.
 
+### Databaseskjema
+
+```javascript
+{
+  "_id": "ObjectId", // Automatisk generert av MongoDB
+  "id": "Number", // Unik ID for produktet
+  "name": "String", // Produktnavn
+  "description": "String", // Produktbeskrivelse
+  "price": "Number", // Pris på produktet
+  "currency": "String", // Valuta, for eksempel "NOK"
+  "category": "String", // Kategori, for eksempel "Sengeartikler"
+  "subCategory": "String", // Underkategori, for eksempel "Sengetøy"
+  "stock": "Number", // Antall på lager
+  "sizes": ["String"], // Tilgjengelige størrelser, f.eks. ["Single", "Queen", "King"]
+  "colors": ["String"], // Tilgjengelige farger, f.eks. ["Hvit", "Grå"]
+  "rating": "Number", // Gjennomsnittlig vurdering
+  "images": ["String"], // Array med URL-er til produktbilder
+  "isFeatured": "Boolean", // Markering for om produktet skal fremheves
+  "createdAt": "Date", // Når produktet ble lagt til
+  "updatedAt": "Date" // Når produktet sist ble oppdatert
+}
+```
+
 ## Teknologier Brukt
 
 Dette prosjektet benytter følgende teknologier:
