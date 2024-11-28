@@ -1,10 +1,14 @@
-import { useState } from "react"
-import data from "../../data/products.json"
+import { useEffect, useState } from "react"
+// import data from "../../data/products.json"
+import axios from "axios"
 import "./ProductPage.css"
 
 function ProductPage() {
+  const [data, setData] = useState([])
+  const [loading, setLoading] = useState(true)
+
   const [selectedItemIndex, setSelectedItemIndex] = useState(8)
-  const listImages = data[selectedItemIndex].images
+  const listImages = data[selectedItemIndex]?.images || []
   // const listImages = ["/luftrenser-2.webp", "/luftrenser-1.webp"]
 
   // "States" for hvorvidt det finnes ulike bilder, størrelser og farger
@@ -25,6 +29,22 @@ function ProductPage() {
   const handleSizeClick = (index) => setSelectedSizeIndex(index) // Når en størrelse klikkes
   const handleColorClick = (index) => setSelectedColorIndex(index) // Når en farge klikkes
 
+  useEffect(() => {
+    const fetchItems = async () => {
+      try {
+        const response = await axios.get("http://localhost:5000/api/items")
+        setData(response.data)
+        console.log(response.data)
+        setLoading(false)
+      } catch (error) {
+        console.error("Error fetching items:", error)
+        setLoading(false)
+      }
+    }
+
+    fetchItems()
+  }, [])
+
   // Funksjon for å endre dropdown-menyens tilstand
   const toggleDropdown = () => {
     dropdown ? setDropdown(false) : setDropdown(true)
@@ -32,6 +52,7 @@ function ProductPage() {
 
   const handleChangeItem = (e) => {
     setSelectedItemIndex(e)
+    setSelectedImageIndex(0)
     window.scroll(top)
     dropdown && setDropdown(false)
   }
@@ -74,32 +95,31 @@ function ProductPage() {
           {/* Produktinformasjon og alternativer m.m. */}
           <article className="infoContainer">
             <header className="header">
-              <h1>{data[selectedItemIndex].name}</h1>
+              <h1>{data[selectedItemIndex]?.name || "Loading..."}</h1>
               {/* <h1>Produktnavn</h1> */}
               <p>Varenummer: xxx / Produktnr.: xxx</p>
             </header>
             <div className="priceContainer">
-              <h2>{data[selectedItemIndex].price} kr</h2>
+              <h2>{data[selectedItemIndex]?.price || "Loading..."}</h2>
               {/* <h2>xx.xx kr</h2> */}
             </div>
             <div className="descriptionContainer">
               <p>
-                {data[selectedItemIndex].description}
+                {data[selectedItemIndex]?.description || "Loading..."}
                 {/* Lorem Ipsum er standard fylltekst i trykkeribransjen siden
                 1500-tallet. */}
               </p>
             </div>
 
             {/* Alternativer for størrelse og farge */}
-            {(isSizes || isColors) && (
+            {(isSizes || isColors) && data[selectedItemIndex] && (
               <div className="alternativesContainer">
-                {isSizes && (
+                {isSizes && data[selectedItemIndex].sizes?.length > 0 ? (
                   <div className="sizes">
                     <div className="alternativesHeader">
                       <b>Størrelse:</b>
                     </div>
                     <div className="sizeButtons">
-                      {/* {["Medium", "Large"].map((size, index) => ( */}
                       {data[selectedItemIndex].sizes.map((size, index) => (
                         <button
                           key={index}
@@ -117,14 +137,16 @@ function ProductPage() {
                       ))}
                     </div>
                   </div>
+                ) : (
+                  <p className="noOptions">Ingen størrelser tilgjengelige</p>
                 )}
-                {isColors && (
+
+                {isColors && data[selectedItemIndex].colors?.length > 0 ? (
                   <div className="colors">
                     <div className="alternativesHeader">
                       <b>Farge:</b>
                     </div>
                     <div className="colorButtons">
-                      {/* {["#aaaaaa", "#ed8824", "#b724ed"].map((color, index) => ( */}
                       {data[selectedItemIndex].colors.map((color, index) => (
                         <button
                           key={index}
@@ -141,6 +163,8 @@ function ProductPage() {
                       ))}
                     </div>
                   </div>
+                ) : (
+                  <p className="noOptions">Ingen farger tilgjengelige</p>
                 )}
               </div>
             )}
