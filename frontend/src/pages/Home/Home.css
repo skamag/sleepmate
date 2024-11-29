@@ -1,4 +1,8 @@
-.home .card {
+.home {
+  background-color: #fffaf5;
+  color: #333;
+}
+/* .home .card {
   margin: 20px 0;
   height: 200px;
   display: flex;
@@ -16,4 +20,41 @@
   flex-direction: column;
   gap: 10px;
   width: 50%;
+} */
+.home .hero {
+  height: calc(100vh - 100px);
+  background-color: #ea4646;
+  background-image: url(../../../public/hero-hammock.webp);
+  background-position-x: center;
+  background-position-y: center;
+  background-size: cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.home .heroContent {
+  width: 60%;
+  display: flex;
+  flex-direction: column;
+}
+.home .hero .heroHeader {
+  font-size: 6rem;
+  line-height: 6rem;
+}
+.home .hero .heroParagraph {
+  font-size: 1rem;
+}
+.home .hero .heroButton {
+  font-size: 1.25rem;
+  font-weight: bold;
+  border-radius: 0.5rem;
+  background-color: black;
+  padding: 1rem 2rem;
+  width: fit-content;
+  color: white;
+  font-size: 0.75rem;
+  margin-top: 2rem;
+}
+.home .grids {
+  padding: 5% 10%;
 }

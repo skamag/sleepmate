@@ -1,0 +1,19 @@
+.navbarContainer {
+  display: flex;
+  justify-content: space-between;
+}
+.navbar ul {
+  display: flex;
+  justify-content: space-between;
+}
+.navbar ul li {
+  list-style-type: none;
+}
+.navbar ul li .link {
+  text-decoration: none;
+  color: #333;
+}
+.searchLoginCart {
+  width: 100px;
+  background-color: orange;
+}

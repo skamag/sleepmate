@@ -12,7 +12,7 @@ function ProductPage() {
   // const listImages = ["/luftrenser-2.webp", "/luftrenser-1.webp"]
 
   // "States" for hvorvidt det finnes ulike bilder, størrelser og farger
-  const [isImages, setIsImages] = useState(true)
+  // const [isImages, setIsImages] = useState(true)
   const [isSizes, setIsSizes] = useState(true)
   const [isColors, setIsColors] = useState(true)
 
@@ -100,7 +100,7 @@ function ProductPage() {
               <p>Varenummer: xxx / Produktnr.: xxx</p>
             </header>
             <div className="priceContainer">
-              <h2>{data[selectedItemIndex]?.price || "Loading..."}</h2>
+              <h2>{data[selectedItemIndex]?.price + " kr" || "Loading..."}</h2>
               {/* <h2>xx.xx kr</h2> */}
             </div>
             <div className="descriptionContainer">
