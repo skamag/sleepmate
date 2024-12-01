@@ -29,6 +29,9 @@
   align-items: center;
   gap: 2rem;
 }
+.searchContainer {
+  position: relative;
+}
 .searchInputSection {
   background-color: #eee;
   padding: 0.5rem 1rem;
@@ -44,6 +47,13 @@
 }
 .searchInputSection input:focus {
   outline: none;
+}
+.searchContainer .searchResults {
+  height: 100px;
+  width: 100px;
+  background-color: red;
+  position: absolute;
+  right: 0;
 }
 .loginContainer .login-wide {
   display: block;
@@ -150,6 +160,9 @@
 @media screen and (max-width: 400px) {
   .searchLoginCart {
     gap: 1rem;
+  }
+  .burger {
+    margin-left: 1rem;
   }
 }
 

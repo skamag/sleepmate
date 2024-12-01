@@ -2,11 +2,11 @@ import { Outlet } from "react-router-dom"
 import Navbar from "./Navbar"
 import "./Layout.css"
 
-function Layout() {
+function Layout({ data, setSelectedProduct }) {
   return (
     <div className="layout">
       {/* Navbar */}
-      <Navbar />
+      <Navbar data={data} setSelectedProduct={setSelectedProduct} />
 
       {/* Main */}
       <main>

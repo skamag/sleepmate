@@ -2,13 +2,16 @@ import { useState } from "react"
 import { Link } from "react-router-dom"
 import "./navbar.css"
 
-function Navbar() {
+function Navbar({ data, setSelectedProduct }) {
   const [isSearch, setIsSearch] = useState(false)
   const [isCart, setIsCart] = useState(false)
   const [isBurgerToggle, setIsBurgerToggle] = useState(false)
 
+  const [searchText, setSearchText] = useState("")
+
   const searchToggle = () => {
     isSearch ? setIsSearch(false) : setIsSearch(true)
+    setSearchText("")
   }
 
   const cartToggle = () => {
@@ -68,10 +71,33 @@ function Navbar() {
           {isSearch ? (
             <div className="searchInputSection">
               <i className="fa fa-search" onClick={() => searchToggle()}></i>
-              <input type="text" />
+              <input
+                type="text"
+                value={searchText}
+                onChange={(e) => setSearchText(e.target.value)}
+              />
             </div>
           ) : (
             <i className="fa fa-search" onClick={() => searchToggle()}></i>
+          )}
+          {isSearch && searchText !== "" && (
+            <div className="searchResults">
+              <ul>
+                {data
+                  .filter((item) =>
+                    item.name.toLowerCase().includes(searchText.toLowerCase())
+                  )
+                  .map((filteredItem) => (
+                    <Link
+                      key={filteredItem.id}
+                      to={"/produktside"}
+                      onClick={() => setSelectedProduct(filteredItem.id)}
+                    >
+                      {filteredItem.name}
+                    </Link>
+                  ))}
+              </ul>
+            </div>
           )}
         </div>
         {!isSearch && (

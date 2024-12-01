@@ -1,5 +1,6 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
+import axios from "axios"
 import Layout from "./components/Layout"
 import Home from "./pages/Home/Home"
 import About from "./pages/About/About"
@@ -11,13 +12,38 @@ import LoginPage from "./pages/LoginPage/LoginPage"
 import ShoppingCart from "./pages/ShoppingCart/ShoppingCart"
 
 function App() {
+  const [data, setData] = useState([])
   const [selectedProduct, setSelectedProduct] = useState(0)
+
+  useEffect(() => {
+    const fetchItems = async () => {
+      try {
+        const response = await axios.get("http://localhost:5000/api/items")
+        setData(response.data)
+        // console.log(response.data)
+        // console.log(selectedProduct)
+        // console.log(selectedItemIndex)
+        // setLoading(false)
+      } catch (error) {
+        console.error("Error fetching items:", error)
+        // setLoading(false)
+      }
+      // window.scroll(top)
+    }
+
+    fetchItems()
+  }, [])
 
   return (
     <>
       <Router>
         <Routes>
-          <Route path="/" element={<Layout />}>
+          <Route
+            path="/"
+            element={
+              <Layout data={data} setSelectedProduct={setSelectedProduct} />
+            }
+          >
             <Route
               index
               element={<Home setSelectedProduct={setSelectedProduct} />}
