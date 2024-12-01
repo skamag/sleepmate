@@ -51,9 +51,11 @@ function ProductPage({ selectedProduct, setSelectedProduct }) {
   useEffect(() => {
     const changeProduct = () => {
       window.scroll(top)
+      handleChangeItem(selectedProduct)
     }
 
     changeProduct()
+    console.log(selectedProduct)
   }, [selectedProduct])
 
   // Funksjon for å endre dropdown-menyens tilstand

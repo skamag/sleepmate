@@ -225,6 +225,9 @@
   }
 }
 @media screen and (max-width: 600px) {
+  .productPage {
+    padding: 5%;
+  }
   .productContainer .infoContainer .alternativesContainer {
     flex-direction: column;
   }

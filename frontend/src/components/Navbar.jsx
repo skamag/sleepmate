@@ -26,6 +26,7 @@ function Navbar({ data, setSelectedProduct }) {
     setIsSearch(false)
     setIsCart(false)
     setIsBurgerToggle(false)
+    setSearchText("")
   }
 
   return (
@@ -70,7 +71,10 @@ function Navbar({ data, setSelectedProduct }) {
         <div className="searchContainer">
           {isSearch ? (
             <div className="searchInputSection">
-              <i className="fa fa-search" onClick={() => searchToggle()}></i>
+              <i
+                className="fa fa-search pointer"
+                onClick={() => searchToggle()}
+              ></i>
               <input
                 type="text"
                 value={searchText}
@@ -78,7 +82,10 @@ function Navbar({ data, setSelectedProduct }) {
               />
             </div>
           ) : (
-            <i className="fa fa-search" onClick={() => searchToggle()}></i>
+            <i
+              className="fa fa-search pointer"
+              onClick={() => searchToggle()}
+            ></i>
           )}
           {isSearch && searchText !== "" && (
             <div className="searchResults">
@@ -89,11 +96,18 @@ function Navbar({ data, setSelectedProduct }) {
                   )
                   .map((filteredItem) => (
                     <Link
+                      className="searchResult link"
                       key={filteredItem.id}
                       to={"/produktside"}
-                      onClick={() => setSelectedProduct(filteredItem.id)}
+                      onClick={() => {
+                        setSelectedProduct(filteredItem.id)
+                        resetNavbar()
+                      }}
                     >
-                      {filteredItem.name}
+                      <div className="imageContainer">
+                        <img src={filteredItem.images[0]} alt="" />
+                      </div>
+                      <div>{filteredItem.name}</div>
                     </Link>
                   ))}
               </ul>

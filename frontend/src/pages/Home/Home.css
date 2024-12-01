@@ -70,4 +70,7 @@
     font-size: 2rem;
     line-height: 3rem;
   }
+  .home .grids {
+    padding: 6rem 5%;
+  }
 }

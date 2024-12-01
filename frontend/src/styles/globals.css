@@ -36,3 +36,6 @@ button {
   text-decoration: none;
   color: #333;
 }
+.pointer {
+  cursor: pointer;
+}
