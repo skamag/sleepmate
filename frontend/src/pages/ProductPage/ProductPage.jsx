@@ -3,11 +3,11 @@ import { useEffect, useState } from "react"
 import axios from "axios"
 import "./ProductPage.css"
 
-function ProductPage() {
+function ProductPage({ selectedProduct, setSelectedProduct }) {
   const [data, setData] = useState([])
   const [loading, setLoading] = useState(true)
 
-  const [selectedItemIndex, setSelectedItemIndex] = useState(8)
+  const [selectedItemIndex, setSelectedItemIndex] = useState(selectedProduct)
   const listImages = data[selectedItemIndex]?.images || []
   // const listImages = ["/luftrenser-2.webp", "/luftrenser-1.webp"]
 
@@ -34,16 +34,27 @@ function ProductPage() {
       try {
         const response = await axios.get("http://localhost:5000/api/items")
         setData(response.data)
-        console.log(response.data)
+        // console.log(response.data)
+        // console.log(selectedProduct)
+        // console.log(selectedItemIndex)
         setLoading(false)
       } catch (error) {
         console.error("Error fetching items:", error)
         setLoading(false)
       }
+      window.scroll(top)
     }
 
     fetchItems()
   }, [])
+
+  useEffect(() => {
+    const changeProduct = () => {
+      window.scroll(top)
+    }
+
+    changeProduct()
+  }, [selectedProduct])
 
   // Funksjon for å endre dropdown-menyens tilstand
   const toggleDropdown = () => {
@@ -52,8 +63,9 @@ function ProductPage() {
 
   const handleChangeItem = (e) => {
     setSelectedItemIndex(e)
+    setSelectedProduct(e)
     setSelectedImageIndex(0)
-    window.scroll(top)
+    // window.scroll(top)
     dropdown && setDropdown(false)
   }
 
@@ -214,7 +226,7 @@ function ProductPage() {
             {data
               .filter(
                 (item) =>
-                  item.category === "Smart-apparater" &&
+                  item.category === data[selectedProduct].category &&
                   item.id !== data[selectedItemIndex].id
               )
               .slice(0, 4)

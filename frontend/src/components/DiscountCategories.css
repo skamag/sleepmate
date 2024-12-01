@@ -1,0 +1,73 @@
+.discountCategories {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+}
+.discountCategories .bedSection,
+.discountCategories .soundSection,
+.discountCategories .electronicsSection {
+  cursor: pointer;
+  display: flex;
+  border-radius: 0.25rem;
+}
+.discountCategories .bedSection {
+  height: 480px;
+  justify-content: flex-end;
+  align-items: center;
+  background-image: url("../../public/seng.jpg");
+  background-size: cover;
+}
+.discountCategories .textContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 1rem;
+  margin: 0.5rem;
+  width: 60%;
+  background-color: rgba(255, 255, 255, 0.25);
+  border-radius: 0.125rem;
+}
+.discountCategories .soundAndElectronicsSection {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+.discountCategories .soundSection {
+  height: 100%;
+  width: 100%;
+  justify-content: flex-end;
+  align-items: flex-start;
+  background-image: url("../../public/lyd.jpg");
+  background-size: cover;
+}
+.discountCategories .electronicsSection {
+  height: 100%;
+  width: 100%;
+  align-items: center;
+  background-image: url("../../public/elektronikk.jpg");
+  background-position: center;
+  background-size: cover;
+}
+
+@media screen and (max-width: 800px) {
+  .discountCategories {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    gap: 1.5rem;
+  }
+  .discountCategories .soundAndElectronicsSection {
+    height: 524px;
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+  }
+  .discountCategories .soundSection {
+    height: 100%;
+    width: 100%;
+  }
+  .discountCategories .electronicsSection {
+    height: 100%;
+    width: 100%;
+  }
+}

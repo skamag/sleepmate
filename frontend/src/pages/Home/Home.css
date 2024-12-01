@@ -2,28 +2,8 @@
   background-color: #fffaf5;
   color: #333;
 }
-/* .home .card {
-  margin: 20px 0;
-  height: 200px;
-  display: flex;
-  gap: 20px;
-}
-.home .card .imageContainer {
-  display: flex;
-}
-.home .card .imageContainer img {
-  height: 100%;
-  display: flex;
-}
-.home .card .textContainer {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  width: 50%;
-} */
 .home .hero {
   height: calc(100vh - 100px);
-  background-color: #ea4646;
   background-image: url(../../../public/hero-hammock.webp);
   background-position-x: center;
   background-position-y: center;
@@ -31,6 +11,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  padding: 0;
 }
 .home .heroContent {
   width: 60%;
@@ -48,13 +29,45 @@
   font-size: 1.25rem;
   font-weight: bold;
   border-radius: 0.5rem;
-  background-color: black;
+  background-color: #333;
   padding: 1rem 2rem;
   width: fit-content;
   color: white;
   font-size: 0.75rem;
   margin-top: 2rem;
+  cursor: pointer;
+}
+.home .homeGridHeader {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  font-weight: 100;
 }
 .home .grids {
-  padding: 5% 10%;
+  padding: 6rem 10%;
+  display: flex;
+  flex-direction: column;
+  gap: 6rem;
+}
+
+@media screen and (max-width: 800px) {
+  .home .hero .heroHeader {
+    font-size: 4rem;
+    line-height: 6rem;
+  }
+}
+@media screen and (max-width: 600px) {
+  .home .hero {
+    padding: 2rem;
+    justify-content: flex-start;
+    align-items: center;
+  }
+  .home .heroContent {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+  .home .hero .heroHeader {
+    font-size: 2rem;
+    line-height: 3rem;
+  }
 }
