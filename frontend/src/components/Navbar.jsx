@@ -19,10 +19,16 @@ function Navbar() {
     isBurgerToggle ? setIsBurgerToggle(false) : setIsBurgerToggle(true)
   }
 
+  const resetNavbar = () => {
+    setIsSearch(false)
+    setIsCart(false)
+    setIsBurgerToggle(false)
+  }
+
   return (
     <div className="navbar">
       <h1 className="logo">
-        <Link className="link" to="/">
+        <Link onClick={() => resetNavbar()} className="link" to="/">
           <div className="logo-wide">BUTIKKNAVN</div>
           <div className="logo-narrow">BN</div>
         </Link>
@@ -32,22 +38,26 @@ function Navbar() {
       >
         <ul>
           <li>
-            <Link className="link" to="/">
+            <Link onClick={() => resetNavbar()} className="link" to="/">
               Hjem
             </Link>
           </li>
           <li>
-            <Link className="link" to="/about">
+            <Link onClick={() => resetNavbar()} className="link" to="/om">
               Om oss
             </Link>
           </li>
           <li>
-            <Link className="link" to="/products">
+            <Link
+              onClick={() => resetNavbar()}
+              className="link"
+              to="/produkter"
+            >
               Produkter
             </Link>
           </li>
           <li>
-            <Link className="link" to="/contact">
+            <Link onClick={() => resetNavbar()} className="link" to="/kontakt">
               Kontakt
             </Link>
           </li>
@@ -67,7 +77,11 @@ function Navbar() {
         {!isSearch && (
           <>
             <div className="loginContainer">
-              <Link className="link" to="/innlogging">
+              <Link
+                onClick={() => resetNavbar()}
+                className="link"
+                to="/innlogging"
+              >
                 <div className="login-wide">Logg inn</div>
                 <div className="login-narrow">
                   <i className="fa fa-user"></i>
@@ -104,7 +118,11 @@ function Navbar() {
                     </>
                   ))}
 
-                  <Link className="link" to="/handlevogn">
+                  <Link
+                    onClick={() => resetNavbar()}
+                    className="link"
+                    to="/handlevogn"
+                  >
                     <button className="toCartButton">Gå til handlevogn</button>
                   </Link>
                 </div>

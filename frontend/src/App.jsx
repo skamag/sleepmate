@@ -7,6 +7,8 @@ import Contact from "./pages/Contact/Contact"
 import Products from "./pages/Products/Products"
 import ProductPage from "./pages/ProductPage/ProductPage"
 import "./styles/globals.css"
+import LoginPage from "./pages/LoginPage/LoginPage"
+import ShoppingCart from "./pages/ShoppingCart/ShoppingCart"
 
 function App() {
   const [selectedProduct, setSelectedProduct] = useState(0)
@@ -23,6 +25,8 @@ function App() {
             <Route path="/om" element={<About />} />
             <Route path="/produkter" element={<Products />} />
             <Route path="/kontakt" element={<Contact />} />
+            <Route path="/innlogging" element={<LoginPage />} />
+            <Route path="/handlevogn" element={<ShoppingCart />} />
             <Route
               path="/produktside"
               element={
