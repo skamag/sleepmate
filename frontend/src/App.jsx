@@ -10,11 +10,14 @@ import ProductPage from "./pages/ProductPage/ProductPage"
 import "./styles/globals.css"
 import LoginPage from "./pages/LoginPage/LoginPage"
 import ShoppingCart from "./pages/ShoppingCart/ShoppingCart"
+import { useCart } from "./context/CartContext"
 
 function App() {
   const [data, setData] = useState([])
   const [selectedProduct, setSelectedProduct] = useState(0)
-  const [cartProducts, setCartProducts] = useState([])
+  // const [cartProducts, setCartProducts] = useState([])
+
+  const { cart, setCart } = useCart()
 
   useEffect(() => {
     const fetchItems = async () => {
@@ -25,7 +28,7 @@ function App() {
         // console.log(selectedProduct)
         // console.log(selectedItemIndex)
         // setLoading(false)
-        console.log(cartProducts)
+        console.log(cart)
       } catch (error) {
         console.error("Error fetching items:", error)
         // setLoading(false)
@@ -34,11 +37,11 @@ function App() {
     }
 
     fetchItems()
-  }, [cartProducts])
+  }, [cart])
 
   const resetNavbar = () => {
     setIsSearch(false)
-    setIsCart(false)
+    // setIsCart(false)
     setIsBurgerToggle(false)
     setSearchText("")
   }
@@ -54,14 +57,14 @@ function App() {
                 data={data}
                 resetNavbar={resetNavbar}
                 setSelectedProduct={setSelectedProduct}
-                cartProducts={cartProducts}
-                setCartProducts={setCartProducts}
+                // cartProducts={cartProducts}
+                // setCartProducts={setCartProducts}
               />
             }
           >
             <Route
               index
-              element={<Home setSelectedProduct={setSelectedProduct} />}
+              element={<Home /* setSelectedProduct={setSelectedProduct} */ />}
             />
             <Route path="/om" element={<About />} />
             <Route path="/produkter" element={<Products />} />
@@ -72,8 +75,8 @@ function App() {
               element={
                 <ShoppingCart
                   resetNavbar={resetNavbar}
-                  cartProducts={cartProducts}
-                  setCartProducts={setCartProducts}
+                  // cartProducts={cartProducts}
+                  // setCartProducts={setCartProducts}
                 />
               }
             />
@@ -83,8 +86,8 @@ function App() {
                 <ProductPage
                   selectedProduct={selectedProduct}
                   setSelectedProduct={setSelectedProduct}
-                  cartProducts={cartProducts}
-                  setCartProducts={setCartProducts}
+                  // cartProducts={cartProducts}
+                  // setCartProducts={setCartProducts}
                 />
               }
             />

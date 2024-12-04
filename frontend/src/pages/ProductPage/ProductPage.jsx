@@ -1,13 +1,14 @@
 import { useEffect, useState } from "react"
 // import data from "../../data/products.json"
 import axios from "axios"
+import { useCart } from "../../context/CartContext"
 import "./ProductPage.css"
 
 function ProductPage({
   selectedProduct,
   setSelectedProduct,
-  cartProducts,
-  setCartProducts,
+  // cartProducts,
+  // setCartProducts,
 }) {
   const [data, setData] = useState([])
   const [loading, setLoading] = useState(true)
@@ -29,10 +30,8 @@ function ProductPage({
   // "State" for dropdown meny
   const [dropdown, setDropdown] = useState(false)
 
-  // Funksjoner for å oppdatere valgt bilder, størrelse eller farge
-  const handleImageClick = (index) => setSelectedImageIndex(index) // Når et bilde klikkes
-  const handleSizeClick = (index) => setSelectedSizeIndex(index) // Når en størrelse klikkes
-  const handleColorClick = (index) => setSelectedColorIndex(index) // Når en farge klikkes
+  // Handlevogn
+  const { cart, setCart } = useCart()
 
   useEffect(() => {
     const fetchItems = async () => {
@@ -62,6 +61,11 @@ function ProductPage({
     changeProduct()
     // console.log(selectedProduct)
   }, [selectedProduct])
+
+  // Funksjoner for å oppdatere valgt bilder, størrelse eller farge
+  const handleImageClick = (index) => setSelectedImageIndex(index) // Når et bilde klikkes
+  const handleSizeClick = (index) => setSelectedSizeIndex(index) // Når en størrelse klikkes
+  const handleColorClick = (index) => setSelectedColorIndex(index) // Når en farge klikkes
 
   // Funksjon for å endre dropdown-menyens tilstand
   const toggleDropdown = () => {
@@ -195,12 +199,12 @@ function ProductPage({
                 aria-label="Legg til i handlekurv"
                 onClick={() => {
                   const selectedItem = data[selectedItemIndex]
-                  const alreadyInCart = cartProducts.some(
+                  const alreadyInCart = cart.some(
                     (product) => product.id === selectedItem.id
                   )
 
                   if (!alreadyInCart) {
-                    setCartProducts([...cartProducts, selectedItem])
+                    setCart([...cart, selectedItem])
                     alert("Varen ble lagt til i handlevognen!")
                   } else {
                     alert("Varen er allerede i handlevognen!")

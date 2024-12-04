@@ -192,31 +192,29 @@ function Navbar({
                     <h5>Varer i handlevogn:</h5>
 
                     {cartProducts.map((item) => (
-                      <>
-                        <div
-                          className="previewProductCard"
-                          key={item.id + " preview"}
-                        >
-                          <div className="cardImage">
-                            <img src={item.images[0]} />
-                          </div>
-                          <div className="cardText">{item.name}</div>
-                          <div className="cardAmount"></div>
-                          <button
-                            className="cartRemove"
-                            onClick={() =>
-                              setCartProducts(
-                                cartProducts.filter(
-                                  (product) => product.id !== item.id
-                                )
-                              )
-                            }
-                            aria-label={`Fjern ${item.name} (id: '${item.id}') fra handlevogn`}
-                          >
-                            &#10006;
-                          </button>
+                      <div
+                        className="previewProductCard"
+                        key={item.id + " preview"}
+                      >
+                        <div className="cardImage">
+                          <img src={item.images[0]} />
                         </div>
-                      </>
+                        <div className="cardText">{item.name}</div>
+                        <div className="cardAmount"></div>
+                        <button
+                          className="cartRemove"
+                          onClick={() =>
+                            setCartProducts(
+                              cartProducts.filter(
+                                (product) => product.id !== item.id
+                              )
+                            )
+                          }
+                          aria-label={`Fjern ${item.name} (id: '${item.id}') fra handlevogn`}
+                        >
+                          &#10006;
+                        </button>
+                      </div>
                     ))}
 
                     <Link

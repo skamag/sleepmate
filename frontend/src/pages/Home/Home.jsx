@@ -27,7 +27,7 @@ function Home({ setSelectedProduct }) {
           <h1 className="homeGridHeader">Populære produkter</h1>
           <ProductsGrid
             startIndex={0}
-            setSelectedProduct={setSelectedProduct}
+            // setSelectedProduct={setSelectedProduct}
           />
         </div>
         <div className="newReleases">
@@ -38,7 +38,7 @@ function Home({ setSelectedProduct }) {
           <h1 className="homeGridHeader">På tilbud nå</h1>
           <ProductsGrid
             startIndex={4}
-            setSelectedProduct={setSelectedProduct}
+            // setSelectedProduct={setSelectedProduct}
           />
         </div>
       </section>

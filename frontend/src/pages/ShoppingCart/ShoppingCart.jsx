@@ -1,60 +1,16 @@
 import { useEffect, useState } from "react"
 import { Link } from "react-router-dom"
+import { useCart } from "../../context/CartContext"
 import "./ShoppingCart.css"
 
-function ShoppingCart({ resetNavbar, cartProducts, setCartProducts }) {
-  // const testArray = [
-  //   {
-  //     id: 13,
-  //     name: "Bambus sengetøy - Pustende Komfort",
-  //     description:
-  //       "Mykt og pustende sengetøy laget av bambus for en luksuriøs og temperaturregulerende søvnopplevelse.",
-  //     price: 899.0,
-  //     currency: "NOK",
-  //     category: "Sengeartikler",
-  //     "sub-category": "Sengetøy",
-  //     stock: 50,
-  //     sizes: ["Queen", "King"],
-  //     colors: ["beige"],
-  //     rating: 4.7,
-  //     images: ["./bambus-laken.webp"],
-  //     isFeatured: true,
-  //   },
-  //   {
-  //     id: 14,
-  //     name: "Varmepute for Rygg - Dyp Varm Komfort",
-  //     description:
-  //       "Varmepute med flere innstillinger som lindrer spenninger i korsryggen og hjelper deg med å slappe av.",
-  //     price: 549.0,
-  //     currency: "NOK",
-  //     category: "Sengeartikler",
-  //     "sub-category": "Varmeputer",
-  //     stock: 60,
-  //     sizes: ["Standard"],
-  //     colors: ["#add8e6"],
-  //     rating: 4.6,
-  //     images: ["./ryggpute.webp"],
-  //     isFeatured: false,
-  //   },
-  //   {
-  //     id: 15,
-  //     name: "Memory Foam Pute - SkyForm",
-  //     description:
-  //       "Ergonomisk designet pute med memory foam som gir optimal støtte til nakken og forbedrer søvnkvaliteten.",
-  //     price: 649.0,
-  //     currency: "NOK",
-  //     category: "Sengeartikler",
-  //     "sub-category": "Putetilbehør",
-  //     stock: 80,
-  //     sizes: ["Standard"],
-  //     colors: ["white"],
-  //     rating: 4.8,
-  //     images: ["./memory-foam--pute.webp"],
-  //     isFeatured: true,
-  //   },
-  // ]
-
+function ShoppingCart({
+  resetNavbar,
+  // cartProducts,
+  // setCartProducts
+}) {
   const [productAmount, setProductAmount] = useState([1, 2, 1])
+
+  const { cart, setCart } = useCart()
 
   return (
     <section className="cartMainSection">
@@ -69,7 +25,7 @@ function ShoppingCart({ resetNavbar, cartProducts, setCartProducts }) {
             <p className="text-center">Test</p>
           </div>
           {/* {cartProducts.map((product) => ( */}
-          {cartProducts.map((product, index) => (
+          {cart.map((product, index) => (
             <div className="cartListRow" key={product.id}>
               {/* {() => addProductAmount()} */}
               <div className="imageContainer">
