@@ -2,11 +2,23 @@ import { Outlet } from "react-router-dom"
 import Navbar from "./Navbar"
 import "./Layout.css"
 
-function Layout({ data, setSelectedProduct }) {
+function Layout({
+  data,
+  setSelectedProduct,
+  resetNavbar,
+  cartProducts,
+  setCartProducts,
+}) {
   return (
     <div className="layout">
       {/* Navbar */}
-      <Navbar data={data} setSelectedProduct={setSelectedProduct} />
+      <Navbar
+        data={data}
+        setSelectedProduct={setSelectedProduct}
+        resetNavbar={resetNavbar}
+        cartProducts={cartProducts}
+        setCartProducts={setCartProducts}
+      />
 
       {/* Main */}
       <main>

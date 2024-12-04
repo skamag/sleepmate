@@ -40,6 +40,7 @@
   cursor: pointer;
 }
 
+/* "Styling" for smalere skjermstørrelser */
 @media screen and (max-width: 800px) {
   .productsGridContainer .cardsContainer {
     grid-template-columns: repeat(2, 1fr);

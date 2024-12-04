@@ -1,3 +1,4 @@
+/* Seksjon for tilbudskategorier */
 .discountCategories {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -49,6 +50,7 @@
   background-size: cover;
 }
 
+/* "Styling" for smalere skjermstørrelser */
 @media screen and (max-width: 800px) {
   .discountCategories {
     display: grid;

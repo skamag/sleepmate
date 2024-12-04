@@ -14,6 +14,7 @@ import ShoppingCart from "./pages/ShoppingCart/ShoppingCart"
 function App() {
   const [data, setData] = useState([])
   const [selectedProduct, setSelectedProduct] = useState(0)
+  const [cartProducts, setCartProducts] = useState([])
 
   useEffect(() => {
     const fetchItems = async () => {
@@ -24,6 +25,7 @@ function App() {
         // console.log(selectedProduct)
         // console.log(selectedItemIndex)
         // setLoading(false)
+        console.log(cartProducts)
       } catch (error) {
         console.error("Error fetching items:", error)
         // setLoading(false)
@@ -32,7 +34,14 @@ function App() {
     }
 
     fetchItems()
-  }, [])
+  }, [cartProducts])
+
+  const resetNavbar = () => {
+    setIsSearch(false)
+    setIsCart(false)
+    setIsBurgerToggle(false)
+    setSearchText("")
+  }
 
   return (
     <>
@@ -41,7 +50,13 @@ function App() {
           <Route
             path="/"
             element={
-              <Layout data={data} setSelectedProduct={setSelectedProduct} />
+              <Layout
+                data={data}
+                resetNavbar={resetNavbar}
+                setSelectedProduct={setSelectedProduct}
+                cartProducts={cartProducts}
+                setCartProducts={setCartProducts}
+              />
             }
           >
             <Route
@@ -52,13 +67,24 @@ function App() {
             <Route path="/produkter" element={<Products />} />
             <Route path="/kontakt" element={<Contact />} />
             <Route path="/innlogging" element={<LoginPage />} />
-            <Route path="/handlevogn" element={<ShoppingCart />} />
+            <Route
+              path="/handlevogn"
+              element={
+                <ShoppingCart
+                  resetNavbar={resetNavbar}
+                  cartProducts={cartProducts}
+                  setCartProducts={setCartProducts}
+                />
+              }
+            />
             <Route
               path="/produktside"
               element={
                 <ProductPage
                   selectedProduct={selectedProduct}
                   setSelectedProduct={setSelectedProduct}
+                  cartProducts={cartProducts}
+                  setCartProducts={setCartProducts}
                 />
               }
             />

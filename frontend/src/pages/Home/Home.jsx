@@ -8,16 +8,20 @@ function Home({ setSelectedProduct }) {
     <div className="home">
       {/* <ItemsList /> */}
 
-      {/* <div>Home</div> */}
+      {/* Forsidebilde/banner */}
       <section className="hero">
         <div className="heroContent">
           <h1 className="heroHeader">Overskrift.</h1>
           <p className="heroParagraph">
             Lorem ipsum dolor sit amet consectetur adipisicing elit.
           </p>
-          <button className="heroButton">Utforsk produkter &rarr;</button>
+          <button className="heroButton" aria-label="Utforsk produkter">
+            Utforsk produkter &rarr;
+          </button>
         </div>
       </section>
+
+      {/* Seksjon for populære produkter, nyheter og tilbud */}
       <section className="grids">
         <div className="popular">
           <h1 className="homeGridHeader">Populære produkter</h1>

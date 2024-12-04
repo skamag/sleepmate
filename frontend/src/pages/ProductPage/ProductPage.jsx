@@ -3,7 +3,12 @@ import { useEffect, useState } from "react"
 import axios from "axios"
 import "./ProductPage.css"
 
-function ProductPage({ selectedProduct, setSelectedProduct }) {
+function ProductPage({
+  selectedProduct,
+  setSelectedProduct,
+  cartProducts,
+  setCartProducts,
+}) {
   const [data, setData] = useState([])
   const [loading, setLoading] = useState(true)
 
@@ -55,7 +60,7 @@ function ProductPage({ selectedProduct, setSelectedProduct }) {
     }
 
     changeProduct()
-    console.log(selectedProduct)
+    // console.log(selectedProduct)
   }, [selectedProduct])
 
   // Funksjon for å endre dropdown-menyens tilstand
@@ -84,7 +89,7 @@ function ProductPage({ selectedProduct, setSelectedProduct }) {
                   className="listItem"
                   key={index}
                   onClick={() => handleImageClick(index)}
-                  aria-label={`Velg bilde ${index + 1}`} // Tilgjengelighetsattributt
+                  aria-label={`Velg bilde ${index + 1}`}
                   aria-pressed={index === selectedImageIndex}
                 >
                   <img
@@ -171,7 +176,7 @@ function ProductPage({ selectedProduct, setSelectedProduct }) {
                           }
                           style={{ backgroundColor: color }}
                           onClick={() => handleColorClick(index)}
-                          aria-label={`Velg farge ${index + 1}`}
+                          aria-label={`Velg farge ${index + 1}`} //endre?
                           aria-pressed={index === selectedColorIndex}
                         ></button>
                       ))}
@@ -185,7 +190,23 @@ function ProductPage({ selectedProduct, setSelectedProduct }) {
 
             {/* Kjøpsknapp */}
             <div className="buttonContainer">
-              <button className="button" aria-label="Legg til i handlekurv">
+              <button
+                className="button"
+                aria-label="Legg til i handlekurv"
+                onClick={() => {
+                  const selectedItem = data[selectedItemIndex]
+                  const alreadyInCart = cartProducts.some(
+                    (product) => product.id === selectedItem.id
+                  )
+
+                  if (!alreadyInCart) {
+                    setCartProducts([...cartProducts, selectedItem])
+                    alert("Varen ble lagt til i handlevognen!")
+                  } else {
+                    alert("Varen er allerede i handlevognen!")
+                  }
+                }}
+              >
                 <h3>Legg til i handlekurv</h3>
               </button>
             </div>
@@ -194,7 +215,7 @@ function ProductPage({ selectedProduct, setSelectedProduct }) {
             <button
               className="dropdownContainer"
               onClick={() => toggleDropdown()}
-              aria-label="Veksle dropdown"
+              aria-label="Åpne dropdown-meny"
               aria-expanded={dropdown}
             >
               <h3 className="dropdownTitle">Dropdown tittel</h3>

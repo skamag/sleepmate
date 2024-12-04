@@ -17,12 +17,12 @@ Dette er en produktside for en potensiell nettbutikk. Siden gir brukere mulighet
 
 ## 🧑‍💻 Brukerveiledning
 
-1. **Utforske bilder**: Klikk på et produktbilde i listen til venstre for å se en større versjon i hovedbildevisningen.
+1. **Velge bilde**: Klikk på et produktbilde i listen til venstre for å se en større versjon i hovedbildevisningen.
 2. **Velge størrelse og farge**:
-   - Klikk på knappene under "Størrelse" for å velge ønsket størrelse.
-   - Velg en farge ved å klikke på fargeknappene.
-3. **Legge til i handlekurv**: Klikk på "Legg til i handlevogn"-knappen for å legge produktet til i handlekurven (fungerer som en placeholder for nå).
-4. **Utforske lignende produkter**: Bla gjennom seksjonen "Lignende produkter" for å finne relaterte varer.
+   - Klikk på knappene under "Størrelse" for å endre størrelse.
+   - Endre farge ved å klikke på fargeknappene.
+3. **Legge til i handlekurv**: Klikk på "Legg til i handlevogn"-knappen for å legge til produktet i handlekurven (fungerer som en placeholder for nå).
+4. **Utforske lignende produkter**: Bla gjennom seksjonen "Lignende produkter" for å finne relaterte varer, trykk på et produkt for å endre hvilket produkt som vises i produktsiden.
 
 ---
 
@@ -30,19 +30,18 @@ Dette er en produktside for en potensiell nettbutikk. Siden gir brukere mulighet
 
 Ved å lage denne produktsiden har jeg:
 
-- Utviklet mine UI/UX-ferdigheter.
-- Videreutviklet min forståelse for semantisk HTML og CSS-styling.
-- Forbedret mine React-ferdigheter.
+- Videreutviklet mine UI/UX-ferdigheter bl.a. gjennom utvikling av wireframes og mockups i Figma.
+- Forbedret mine ferdigheter innen bl.a. HTML, CSS, JavaScript, ReactJS, Axios og MongoDB.
+- Opparbeidet meg kunnskap rundt utforming av en nettbutikks produktside.
 
 ---
 
-## 🚀 Muligheter for videreutvikling
+## 🚀 Videreutviklingsmuligheter
 
 1. **Backend-integrasjon**: Koble produktdata og handlekurv til en database for å lagre og hente informasjon.
 2. **Brukeranmeldelser**: Legge til en seksjon for kundevurderinger og tilbakemeldinger.
-3. **Sortering og filtrering**: Gi brukere muligheten til å filtrere produkter basert på pris, størrelse, eller popularitet.
-4. **Animasjoner**: Forbedre brukeropplevelsen med jevne overganger og hover-effekter.
-5. **Internasjonalisering**: Gjøre siden tilgjengelig på flere språk.
+3. **Animasjoner og andre effekter**: Forbedre brukeropplevelsen med animasjoner og andre effekter.
+4. **Internasjonalisering**: Gjøre siden tilgjengelig på flere språk.
 
 ---
 

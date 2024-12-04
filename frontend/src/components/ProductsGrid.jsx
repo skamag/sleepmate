@@ -50,9 +50,7 @@ function ProductsGrid({ startIndex, setSelectedProduct }) {
                     <img
                       src={item.images[0]}
                       alt={`Lignende produkt ${index + 1}`}
-                      aria-label={`Se detaljer om lignende produkt ${
-                        index + 1
-                      }`}
+                      aria-label={`Gå til lignende produkt ${index + 1}`}
                     />
                   </figure>
                   <div className="textContainer">
