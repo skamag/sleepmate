@@ -1,17 +1,19 @@
 import { useEffect, useState } from "react"
 // import data from "../../data/products.json"
-import axios from "axios"
+// import axios from "axios"
 import { useCart } from "../../context/CartContext"
 import "./ProductPage.css"
 
 function ProductPage({
+  data,
+  resetNavbar,
   selectedProduct,
   setSelectedProduct,
   // cartProducts,
   // setCartProducts,
 }) {
-  const [data, setData] = useState([])
-  const [loading, setLoading] = useState(true)
+  // const [data, setData] = useState([])
+  // const [loading, setLoading] = useState(true)
 
   const [selectedItemIndex, setSelectedItemIndex] = useState(selectedProduct)
   const listImages = data[selectedItemIndex]?.images || []
@@ -33,7 +35,8 @@ function ProductPage({
   // Handlevogn
   const { cart, setCart } = useCart()
 
-  useEffect(() => {
+  {
+    /* useEffect(() => {
     const fetchItems = async () => {
       try {
         const response = await axios.get("http://localhost:5000/api/items")
@@ -50,12 +53,14 @@ function ProductPage({
     }
 
     fetchItems()
-  }, [])
+  }, []) */
+  }
 
   useEffect(() => {
     const changeProduct = () => {
-      window.scroll(top)
       handleChangeItem(selectedProduct)
+      window.scrollTo(0, 0)
+      resetNavbar()
     }
 
     changeProduct()
@@ -192,7 +197,7 @@ function ProductPage({
               </div>
             )}
 
-            {/* Kjøpsknapp */}
+            {/* "Legg til i handlekurv"-knapp */}
             <div className="buttonContainer">
               <button
                 className="button"
@@ -209,6 +214,9 @@ function ProductPage({
                   } else {
                     alert("Varen er allerede i handlevognen!")
                   }
+
+                  // setCart([...cart, selectedItem])
+                  // alert("Varen ble lagt til i handlevognen!")
                 }}
               >
                 <h3>Legg til i handlekurv</h3>

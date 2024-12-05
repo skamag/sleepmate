@@ -6,8 +6,16 @@ function Layout({
   data,
   setSelectedProduct,
   resetNavbar,
-  cartProducts,
-  setCartProducts,
+  isSearch,
+  setIsSearch,
+  isCart,
+  setIsCart,
+  isBurgerToggle,
+  setIsBurgerToggle,
+  searchText,
+  setSearchText,
+  // cartProducts,
+  // setCartProducts,
 }) {
   return (
     <div className="layout">
@@ -16,8 +24,16 @@ function Layout({
         data={data}
         setSelectedProduct={setSelectedProduct}
         resetNavbar={resetNavbar}
-        cartProducts={cartProducts}
-        setCartProducts={setCartProducts}
+        isSearch={isSearch}
+        setIsSearch={setIsSearch}
+        isCart={isCart}
+        setIsCart={setIsCart}
+        isBurgerToggle={isBurgerToggle}
+        setIsBurgerToggle={setIsBurgerToggle}
+        searchText={searchText}
+        setSearchText={setSearchText}
+        // cartProducts={cartProducts}
+        // setCartProducts={setCartProducts}
       />
 
       {/* Main */}

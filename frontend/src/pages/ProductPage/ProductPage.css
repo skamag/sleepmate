@@ -104,14 +104,14 @@
 .productContainer .infoContainer .buttonContainer .button {
   width: 100%;
   background-color: #24a0ed;
-  color: white;
   display: flex;
   justify-content: center;
   align-items: center;
   padding: 1rem;
   border-radius: 0.5rem;
-  border: none;
-  cursor: pointer;
+}
+.productContainer .infoContainer .buttonContainer .button h3 {
+  color: white;
 }
 .productContainer .infoContainer .dropdownContainer {
   display: flex;

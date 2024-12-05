@@ -3,7 +3,7 @@ import axios from "axios"
 import { Link } from "react-router-dom"
 import "./ProductsGrid.css"
 
-function ProductsGrid({ startIndex /* setSelectedProduct */ }) {
+function ProductsGrid({ startIndex, setSelectedProduct }) {
   const [data, setData] = useState([])
   const [loading, setLoading] = useState(true)
 

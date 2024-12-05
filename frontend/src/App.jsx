@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react"
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
 import axios from "axios"
+import { CartProvider } from "./context/CartContext"
 import Layout from "./components/Layout"
 import Home from "./pages/Home/Home"
 import About from "./pages/About/About"
@@ -14,10 +15,16 @@ import { useCart } from "./context/CartContext"
 
 function App() {
   const [data, setData] = useState([])
+  const [loading, setLoading] = useState(true)
+
   const [selectedProduct, setSelectedProduct] = useState(0)
   // const [cartProducts, setCartProducts] = useState([])
 
-  const { cart, setCart } = useCart()
+  const [isSearch, setIsSearch] = useState(false)
+  const [isCart, setIsCart] = useState(false)
+  const [isBurgerToggle, setIsBurgerToggle] = useState(false)
+
+  const [searchText, setSearchText] = useState("")
 
   useEffect(() => {
     const fetchItems = async () => {
@@ -28,7 +35,6 @@ function App() {
         // console.log(selectedProduct)
         // console.log(selectedItemIndex)
         // setLoading(false)
-        console.log(cart)
       } catch (error) {
         console.error("Error fetching items:", error)
         // setLoading(false)
@@ -37,17 +43,17 @@ function App() {
     }
 
     fetchItems()
-  }, [cart])
+  }, [])
 
   const resetNavbar = () => {
     setIsSearch(false)
-    // setIsCart(false)
+    setIsCart(false)
     setIsBurgerToggle(false)
     setSearchText("")
   }
 
   return (
-    <>
+    <CartProvider>
       <Router>
         <Routes>
           <Route
@@ -57,6 +63,14 @@ function App() {
                 data={data}
                 resetNavbar={resetNavbar}
                 setSelectedProduct={setSelectedProduct}
+                isSearch={isSearch}
+                setIsSearch={setIsSearch}
+                isCart={isCart}
+                setIsCart={setIsCart}
+                isBurgerToggle={isBurgerToggle}
+                setIsBurgerToggle={setIsBurgerToggle}
+                searchText={searchText}
+                setSearchText={setSearchText}
                 // cartProducts={cartProducts}
                 // setCartProducts={setCartProducts}
               />
@@ -64,7 +78,7 @@ function App() {
           >
             <Route
               index
-              element={<Home /* setSelectedProduct={setSelectedProduct} */ />}
+              element={<Home setSelectedProduct={setSelectedProduct} />}
             />
             <Route path="/om" element={<About />} />
             <Route path="/produkter" element={<Products />} />
@@ -84,6 +98,8 @@ function App() {
               path="/produktside"
               element={
                 <ProductPage
+                  data={data}
+                  resetNavbar={resetNavbar}
                   selectedProduct={selectedProduct}
                   setSelectedProduct={setSelectedProduct}
                   // cartProducts={cartProducts}
@@ -95,7 +111,7 @@ function App() {
           </Route>
         </Routes>
       </Router>
-    </>
+    </CartProvider>
   )
 }
 

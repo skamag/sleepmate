@@ -1,19 +1,24 @@
 import { useState } from "react"
 import { Link } from "react-router-dom"
+import { useCart } from "../context/CartContext"
 import "./navbar.css"
 
 function Navbar({
   data,
   setSelectedProduct,
   resetNavbar,
-  cartProducts,
-  setCartProducts,
+  isSearch,
+  setIsSearch,
+  isCart,
+  setIsCart,
+  isBurgerToggle,
+  setIsBurgerToggle,
+  searchText,
+  setSearchText,
+  // cartProducts,
+  // setCartProducts,
 }) {
-  const [isSearch, setIsSearch] = useState(false)
-  const [isCart, setIsCart] = useState(false)
-  const [isBurgerToggle, setIsBurgerToggle] = useState(false)
-
-  const [searchText, setSearchText] = useState("")
+  const { cart, setCart } = useCart()
 
   const searchToggle = () => {
     if (isSearch) {
@@ -191,7 +196,7 @@ function Navbar({
                   <div className="cartPreview">
                     <h5>Varer i handlevogn:</h5>
 
-                    {cartProducts.map((item) => (
+                    {cart.map((item) => (
                       <div
                         className="previewProductCard"
                         key={item.id + " preview"}
@@ -204,10 +209,8 @@ function Navbar({
                         <button
                           className="cartRemove"
                           onClick={() =>
-                            setCartProducts(
-                              cartProducts.filter(
-                                (product) => product.id !== item.id
-                              )
+                            setCart(
+                              cart.filter((product) => product.id !== item.id)
                             )
                           }
                           aria-label={`Fjern ${item.name} (id: '${item.id}') fra handlevogn`}
