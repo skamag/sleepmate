@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import axios from "axios"
 import { useCart } from "../../context/CartContext"
 import "./ShoppingCart.css"
@@ -10,20 +10,24 @@ function ShoppingCart({
   // setCartProducts
 }) {
   const [productAmount, setProductAmount] = useState([])
+  const [shipping, setShipping] = useState(0)
   const [isAddDiscount, setIsAddDiscount] = useState(false)
   const [isDiscount, setIsDiscount] = useState(false)
   const [discountInput, setDiscountInput] = useState("")
   const [discount, setDiscount] = useState(0)
 
-  const shipping = 79
-
   // const testArray = []
+
+  const navigate = useNavigate()
 
   const { cart, setCart } = useCart()
 
   useEffect(() => {
     if (cart.length > 0) {
       setProductAmount(new Array(cart.length).fill(1))
+      setShipping(79)
+    } else {
+      setShipping(0)
     }
   }, [cart])
 
@@ -38,7 +42,8 @@ function ShoppingCart({
 
       console.log(response.data.message) // Display success message
       // Clear cart or redirect to a success page if needed
-      // setCart([]); // Clear cart after purchas
+      setCart([]) // Clear cart after purchas
+      navigate("/suksess")
     } catch (error) {
       console.error("Purchase error:", error.response?.data || error.message)
       alert(error.response?.data?.error || "An error occurred during purchase.")
@@ -63,6 +68,7 @@ function ShoppingCart({
   return (
     <section className="cartMainSection">
       <h1 className="cartMainHeader">ShoppingCart</h1>
+
       <div className="shoppingCart">
         <div className="cartList">
           <div className="cartListCategories">
@@ -164,10 +170,12 @@ function ShoppingCart({
                 <p>Pris</p>
                 <p>{totalProductsPrice.toFixed(2) + " " + "kr"}</p>
               </div>
-              <div>
-                <p>Frakt</p>
-                <p>{shipping.toFixed(2) + " " + "kr"}</p>
-              </div>
+              {cart.length > 0 && (
+                <div>
+                  <p>Frakt</p>
+                  <p>{shipping.toFixed(2) + " " + "kr"}</p>
+                </div>
+              )}
               <div>
                 {!isDiscount && (
                   <>

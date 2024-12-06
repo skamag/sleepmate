@@ -58,16 +58,22 @@
 .searchContainer .searchResults {
   background-color: white;
   position: absolute;
+  margin-top: 50px;
+  top: 50%;
   right: 0;
   padding: 1rem;
   z-index: 20;
+  width: fit-content;
+  /* box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px; */
+  border-radius: 0.25rem;
+  border: 2px solid #ececf0;
 }
 .searchContainer .searchResults .searchResult {
   display: flex;
   gap: 1rem;
 }
 .searchContainer .searchResults .searchResult .imageContainer img {
-  height: 4rem;
+  height: 2rem;
   border-radius: 0.125rem;
 }
 .searchContainer .searchResults ul {
@@ -75,6 +81,13 @@
   flex-direction: column;
   gap: 1rem;
   flex-wrap: nowrap;
+}
+.searchContainer .searchResults ul .link {
+  display: flex;
+  align-items: center;
+}
+.searchContainer .searchResults .searchResult .nameContainer {
+  text-wrap: nowrap;
 }
 
 /* Vise/skjule ulike innloggingsknappvarianter basert på skjermstørrelse */
@@ -111,7 +124,7 @@
   align-items: center;
 }
 .cartSection .cartPreview {
-  padding: 2rem;
+  padding: 1rem;
   background-color: white;
   position: absolute;
   margin-top: 50px;
@@ -123,8 +136,9 @@
   flex-wrap: nowrap;
   gap: 1rem;
   width: fit-content;
-  /* border-radius: 0.25rem; */
-  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  border-radius: 0.25rem;
+  /* box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px; */
+  border: 2px solid #ececf0;
 }
 .cartSection .cartPreview .previewProductCard {
   display: flex;

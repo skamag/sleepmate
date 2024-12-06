@@ -8,6 +8,8 @@ import About from "./pages/About/About"
 import Contact from "./pages/Contact/Contact"
 import Products from "./pages/Products/Products"
 import ProductPage from "./pages/ProductPage/ProductPage"
+import Success from "./pages/Success/Success"
+
 import "./styles/globals.css"
 import LoginPage from "./pages/LoginPage/LoginPage"
 import ShoppingCart from "./pages/ShoppingCart/ShoppingCart"
@@ -107,6 +109,7 @@ function App() {
                 />
               }
             />
+            <Route path="/suksess" element={<Success />} />
             {/* <Route path="*" element={<NotFound />} /> */}
           </Route>
         </Routes>

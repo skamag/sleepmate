@@ -138,28 +138,40 @@ function Navbar({
             </div>
             {isSearch && searchText !== "" && (
               <div className="searchResults">
-                <ul>
-                  {data
-                    .filter((item) =>
-                      item.name.toLowerCase().includes(searchText.toLowerCase())
-                    )
-                    .map((filteredItem) => (
-                      <Link
-                        className="searchResult link"
-                        key={filteredItem.id}
-                        to={"/produktside"}
-                        onClick={() => {
-                          setSelectedProduct(filteredItem.id)
-                          resetNavbar()
-                        }}
-                      >
-                        <div className="imageContainer">
-                          <img src={filteredItem.images[0]} alt="" />
-                        </div>
-                        <div>{filteredItem.name}</div>
-                      </Link>
-                    ))}
-                </ul>
+                {data.filter((item) =>
+                  item.name.toLowerCase().includes(searchText.toLowerCase())
+                ).length === 0 ? (
+                  <p>Ingen søkeresultater...</p> // Show this message if no results are found
+                ) : (
+                  <ul>
+                    {data
+                      .filter((item) =>
+                        item.name
+                          .toLowerCase()
+                          .includes(searchText.toLowerCase())
+                      )
+                      .map((filteredItem) => (
+                        <Link
+                          className="searchResult link"
+                          key={filteredItem.id}
+                          to={"/produktside"}
+                          onClick={() => {
+                            setSelectedProduct(filteredItem.id)
+                            resetNavbar()
+                          }}
+                        >
+                          <div className="imageContainer">
+                            <img src={filteredItem.images[0]} alt="" />
+                          </div>
+                          <div className="nameContainer">
+                            {filteredItem.name.length > 75
+                              ? `${filteredItem.name.substring(0, 75)}...`
+                              : filteredItem.name}
+                          </div>
+                        </Link>
+                      ))}
+                  </ul>
+                )}
               </div>
             )}
           </div>
