@@ -129,7 +129,11 @@ function ProductPage({
             </header>
             <div className="priceContainer">
               <h2>{data[selectedItemIndex]?.price + " kr" || "Loading..."}</h2>
-              {/* <h2>xx.xx kr</h2> */}
+              {data[selectedItemIndex]?.stock ? (
+                <p>({data[selectedItemIndex]?.stock} på lager)</p>
+              ) : (
+                <p style={{ color: "red" }}>(Ikke på lager)</p>
+              )}
             </div>
             <div className="descriptionContainer">
               <p>

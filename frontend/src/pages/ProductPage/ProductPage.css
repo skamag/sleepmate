@@ -67,6 +67,14 @@
 .productContainer .infoContainer .header p {
   color: #aaa;
 }
+.productContainer .infoContainer .priceContainer {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+/* .productContainer .infoContainer .priceContainer p {
+  color: ;
+} */
 .productContainer .infoContainer .alternativesContainer {
   display: flex;
   gap: 1.5rem;

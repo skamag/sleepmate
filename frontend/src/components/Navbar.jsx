@@ -187,10 +187,14 @@ function Navbar({
                   Handlevogn
                 </button>
                 <button
+                  className="cartIconContainer"
                   onClick={() => cartToggle()}
                   aria-label="Forhåndsvis handlevogn"
                 >
                   <i className="fa fa-shopping-cart"></i>
+                  {cart > 0 && (
+                    <div className="cartIconCircle">{cart.length}</div>
+                  )}
                 </button>
                 {isCart && (
                   <div className="cartPreview">

@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react"
 import { Link } from "react-router-dom"
+import axios from "axios"
 import { useCart } from "../../context/CartContext"
 import "./ShoppingCart.css"
 
@@ -9,8 +10,14 @@ function ShoppingCart({
   // setCartProducts
 }) {
   const [productAmount, setProductAmount] = useState([])
+  const [isAddDiscount, setIsAddDiscount] = useState(false)
+  const [isDiscount, setIsDiscount] = useState(false)
+  const [discountInput, setDiscountInput] = useState("")
+  const [discount, setDiscount] = useState(0)
+
   const shipping = 79
-  const rabatt = 0
+
+  // const testArray = []
 
   const { cart, setCart } = useCart()
 
@@ -19,6 +26,24 @@ function ShoppingCart({
       setProductAmount(new Array(cart.length).fill(1))
     }
   }, [cart])
+
+  async function handlePurchase(cart) {
+    try {
+      const response = await axios.post("http://localhost:5000/api/purchase", {
+        cartItems: cart.map((item, index) => ({
+          productId: item.id,
+          quantity: productAmount[index] || 1,
+        })),
+      })
+
+      console.log(response.data.message) // Display success message
+      // Clear cart or redirect to a success page if needed
+      // setCart([]); // Clear cart after purchas
+    } catch (error) {
+      console.error("Purchase error:", error.response?.data || error.message)
+      alert(error.response?.data?.error || "An error occurred during purchase.")
+    }
+  }
 
   const totalProductsPrice = cart.reduce((total, product, index) => {
     return total + product.price * (productAmount[index] || 1)
@@ -31,6 +56,10 @@ function ShoppingCart({
     setProductAmount(updatedAmounts)
   }
 
+  const handleAddDiscount = () => {
+    setIsAddDiscount(true)
+  }
+
   return (
     <section className="cartMainSection">
       <h1 className="cartMainHeader">ShoppingCart</h1>
@@ -38,15 +67,21 @@ function ShoppingCart({
         <div className="cartList">
           <div className="cartListCategories">
             <p>Produkt</p>
-            <p></p>
-            <p className="text-center">Pris</p>
-            <p className="text-center">Antall</p>
-            <p className="text-center">Sum</p>
+            <div className="calculationsHeadersContainer">
+              <div></div>
+              <div className="headers">
+                <p className="text-center calculations-headers">Pris</p>
+                <p className="text-center calculations-headers">Antall</p>
+                <p className="text-center calculations-headers">Sum</p>
+              </div>
+            </div>
           </div>
           {/* {cartProducts.map((product) => ( */}
+          {/* {cart.map((product, index) => ( */}
           {cart.map((product, index) => (
             <div className="cartListRow" key={product.id}>
               {/* {() => addProductAmount()} */}
+
               <div className="imageContainer">
                 <img
                   src={product.images[0]}
@@ -54,49 +89,58 @@ function ShoppingCart({
                 />
               </div>
               {/* <div className="cartListInfoContainer"> */}
-              <div className="cartListTextContainer">
-                <p className="cartListName">{product.name}</p>
-                <p className="cartListAlternatives">
-                  Eventuell størrelse og/eller farge
-                </p>
-              </div>
+              <div className="rowInfo">
+                <div className="cartListTextContainer">
+                  <p className="cartListName">{product.name.split(" - ")[0]}</p>
+                  <p className="cartListAlternatives">
+                    {/* Eventuell størrelse og/eller farge */}
+                    Lorem ipsum dolor
+                  </p>
+                </div>
+                <div className="cartListCalculations">
+                  <p className="cartListPrice text-center">
+                    {product.price + " kr"}
+                  </p>
+                  <div className="cartListAmount">
+                    <button
+                      onClick={() =>
+                        handleAmountChange(index, productAmount[index] - 1)
+                      }
+                    >
+                      &#x2212;
+                    </button>
+                    <input
+                      type="number"
+                      min="1"
+                      value={productAmount[index] ?? 1}
+                      onChange={(e) =>
+                        handleAmountChange(index, e.target.value)
+                      }
+                    />
+                    <button
+                      onClick={() =>
+                        handleAmountChange(index, productAmount[index] + 1)
+                      }
+                    >
+                      &#x2b;
+                    </button>
+                  </div>
+                  <p className="cartListTotal text-center">
+                    {product.price * productAmount[index] + " kr"}
+                  </p>
 
-              <p className="cartListPrice text-center">
-                {product.price + " kr"}
-              </p>
-              <div className="cartListAmount">
-                <button
-                  onClick={() =>
-                    handleAmountChange(index, productAmount[index] - 1)
-                  }
-                >
-                  &#x2212;
-                </button>
-                <input
-                  type="number"
-                  min="1"
-                  value={productAmount[index] ?? 1}
-                  onChange={(e) => handleAmountChange(index, e.target.value)}
-                />
-                <button
-                  onClick={() =>
-                    handleAmountChange(index, productAmount[index] + 1)
-                  }
-                >
-                  &#x2b;
-                </button>
+                  {/* </div> */}
+                  <div className="cartListRemove">
+                    <button
+                      onClick={() =>
+                        setCart(cart.filter((item) => item.id !== product.id))
+                      }
+                    >
+                      <p>&#x2715;</p>
+                    </button>
+                  </div>
+                </div>
               </div>
-              <p className="cartListTotal text-center">
-                {product.price * productAmount[index] + " kr"}
-              </p>
-              {/* </div> */}
-              <button
-                onClick={() =>
-                  setCart(cart.filter((item) => item.id !== product.id))
-                }
-              >
-                <p className="cartListRemove">&#x2715;</p>
-              </button>
             </div>
           ))}
           <Link
@@ -118,23 +162,75 @@ function ShoppingCart({
             <div className="detailsContainer">
               <div>
                 <p>Pris</p>
-                <p>{totalProductsPrice.toFixed(2)}</p>
+                <p>{totalProductsPrice.toFixed(2) + " " + "kr"}</p>
               </div>
               <div>
                 <p>Frakt</p>
-                <p>{shipping}</p>
+                <p>{shipping.toFixed(2) + " " + "kr"}</p>
               </div>
               <div>
-                <p>Rabatt</p>
-                <p>{rabatt}</p>
+                {!isDiscount && (
+                  <>
+                    {isAddDiscount ? (
+                      <>
+                        <input
+                          type="text"
+                          className="discountInput"
+                          value={discountInput}
+                          onChange={(e) => setDiscountInput(e.target.value)}
+                        />
+                        <button
+                          className="discountAdd"
+                          onClick={() => {
+                            if (discountInput === "RABATT50") {
+                              setIsDiscount(true)
+                              setDiscount(-50)
+                            } else {
+                              alert("Ugyldig rabattkode")
+                            }
+                          }}
+                        >
+                          Legg til
+                        </button>
+                      </>
+                    ) : (
+                      <button
+                        style={{ color: "#2b9c20" }}
+                        onClick={() => handleAddDiscount()}
+                      >
+                        Legg til rabattkode &rarr;
+                      </button>
+                    )}
+                  </>
+                )}
+                {isDiscount && (
+                  <>
+                    <p>Rabatt</p>
+                    <p>{discount.toFixed(2) + " " + "kr"}</p>
+                  </>
+                )}
               </div>
             </div>
             <div className="totalContainer">
               <h1>Totalsum</h1>
-              <h1>{totalProductsPrice + shipping + rabatt}</h1>
+              <h1>
+                {(totalProductsPrice + shipping + discount).toFixed(2) +
+                  " " +
+                  "kr"}
+              </h1>
             </div>
           </div>
-          <button className="checkoutButton">
+          <button
+            className="checkoutButton"
+            onClick={() => {
+              if (cart.length === 0) {
+                alert("Cart is empty. Please add items before checking out.")
+              } else {
+                handlePurchase(cart, productAmount)
+              }
+            }}
+            disabled={cart.length === 0}
+          >
             <h3>Til kasse</h3>
           </button>
         </div>

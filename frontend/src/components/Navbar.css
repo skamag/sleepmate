@@ -94,6 +94,22 @@
 .cartSection .cartText-wide {
   display: block;
 }
+.cartSection .cartIconContainer {
+  position: relative;
+}
+.cartSection .cartIconCircle {
+  background-color: rgb(255, 200, 0);
+  height: 0.75rem;
+  width: 0.75rem;
+  border-radius: 50%;
+  position: absolute;
+  top: -0.125rem;
+  right: -0.5rem;
+  font-size: 0.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 .cartSection .cartPreview {
   padding: 2rem;
   background-color: white;
@@ -107,7 +123,8 @@
   flex-wrap: nowrap;
   gap: 1rem;
   width: fit-content;
-  border-radius: 0.25rem;
+  /* border-radius: 0.25rem; */
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
 }
 .cartSection .cartPreview .previewProductCard {
   display: flex;
