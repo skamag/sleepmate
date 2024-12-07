@@ -7,15 +7,18 @@ function LoginPage() {
   const [showRegistration, setShowRegistration] = useState(false)
 
   return (
-    <div className="loginPage">
-      <h1>{showRegistration ? "Register" : "Login"}</h1>
-      {showRegistration ? <RegistrationForm /> : <LoginForm />}
-      <button
-        onClick={() => setShowRegistration((prev) => !prev)}
-        className="toggle-form"
-      >
-        {showRegistration ? "Switch to Login" : "Switch to Register"}
-      </button>
+    <div className="loginPageContainer">
+      <div className="loginPage">
+        <h1>{showRegistration ? "Register" : "Login"}</h1>
+
+        <button
+          onClick={() => setShowRegistration((prev) => !prev)}
+          className="toggle-form"
+        >
+          {showRegistration ? "Switch to Login" : "Switch to Register"}
+        </button>
+        {showRegistration ? <RegistrationForm /> : <LoginForm />}
+      </div>
     </div>
   )
 }

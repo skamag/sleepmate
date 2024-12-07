@@ -41,7 +41,7 @@ function LoginForm() {
   return (
     <form onSubmit={handleSubmit} className="loginForm">
       <div>
-        <label>email:</label>
+        <label>email</label>
         <input
           type="email"
           name="email"
@@ -51,7 +51,7 @@ function LoginForm() {
         />
       </div>
       <div>
-        <label>Password:</label>
+        <label>Password</label>
         <input
           type="password"
           name="password"
