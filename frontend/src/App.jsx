@@ -1,19 +1,18 @@
 import { useEffect, useState } from "react"
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
 import axios from "axios"
-import { CartProvider } from "./context/CartContext"
+import { CartProvider, useCart } from "./context/CartContext"
 import Layout from "./components/Layout"
 import Home from "./pages/Home/Home"
 import About from "./pages/About/About"
 import Contact from "./pages/Contact/Contact"
 import Products from "./pages/Products/Products"
 import ProductPage from "./pages/ProductPage/ProductPage"
-import Success from "./pages/Success/Success"
-
-import "./styles/globals.css"
 import LoginPage from "./pages/LoginPage/LoginPage"
 import ShoppingCart from "./pages/ShoppingCart/ShoppingCart"
-import { useCart } from "./context/CartContext"
+import Success from "./pages/Success/Success"
+import Innlogget from "./pages/Innlogget/Innlogget"
+import "./styles/globals.css"
 
 function App() {
   const [data, setData] = useState([])
@@ -110,6 +109,7 @@ function App() {
               }
             />
             <Route path="/suksess" element={<Success />} />
+            <Route path="/innlogget" element={<Innlogget />} />
             {/* <Route path="*" element={<NotFound />} /> */}
           </Route>
         </Routes>

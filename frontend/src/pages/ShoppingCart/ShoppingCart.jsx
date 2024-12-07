@@ -190,9 +190,19 @@ function ShoppingCart({
                         <button
                           className="discountAdd"
                           onClick={() => {
-                            if (discountInput === "RABATT50") {
+                            if (
+                              discountInput === "RABATT50" &&
+                              cart.length > 0
+                            ) {
                               setIsDiscount(true)
                               setDiscount(-50)
+                            } else if (
+                              discountInput === "RABATT50" &&
+                              cart.length === 0
+                            ) {
+                              alert(
+                                "Det må være minst én vare i handlevognen for å kunne motta rabatt"
+                              )
                             } else {
                               alert("Ugyldig rabattkode")
                             }

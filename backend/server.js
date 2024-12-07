@@ -1,7 +1,14 @@
 const express = require("express")
 const mongoose = require("mongoose")
 const cors = require("cors")
-require("dotenv").config()
+const dotenv = require("dotenv")
+
+const registerRoute = require("./routes/auth/register")
+const loginRoute = require("./routes/auth/login")
+const authenticate = require("./routes/auth/authenticate")
+const Item = require("./models/Item")
+
+dotenv.config()
 
 const app = express()
 
@@ -9,19 +16,14 @@ const app = express()
 app.use(cors())
 app.use(express.json())
 
-// Connect to MongoDB
-mongoose
-  .connect(process.env.MONGO_URI, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  })
-  .then(() => console.log("MongoDB connected"))
-  .catch((err) => console.error("Error connecting to MongoDB:", err))
-
-// Model
-const Item = require("./models/Item")
-
 // Routes
+app.use("/api/register", registerRoute)
+app.use("/api/login", loginRoute)
+
+app.get("/api/protected", authenticate, (req, res) => {
+  res.status(200).json({ message: "Access granted!" })
+})
+
 app.get("/api/items", async (req, res) => {
   try {
     console.log("Fetching items...")
@@ -34,9 +36,8 @@ app.get("/api/items", async (req, res) => {
   }
 })
 
-// Handle purchase
 app.post("/api/purchase", async (req, res) => {
-  const { cartItems } = req.body // Expecting an array of { id, quantity } objects
+  const { cartItems } = req.body
 
   try {
     if (!cartItems) {
@@ -46,7 +47,7 @@ app.post("/api/purchase", async (req, res) => {
     for (const item of cartItems) {
       console.log("Processing item:", item)
 
-      const product = await Item.findOne({ id: item.productId }) // Match `id` instead of `_id`
+      const product = await Item.findOne({ id: item.productId })
 
       if (!product) {
         return res
@@ -54,17 +55,13 @@ app.post("/api/purchase", async (req, res) => {
           .json({ error: `Item with ID ${item.productId} not found.` })
       }
 
-      // Check stock
       if (product.stock < item.quantity) {
         return res.status(400).json({
           error: `Insufficient stock for product ${product.name}. Requested: ${item.quantity}, Available: ${product.stock}`,
         })
       }
 
-      // Reduce stock
       product.stock -= item.quantity
-
-      // Save the updated product
       await product.save()
     }
 
@@ -75,6 +72,14 @@ app.post("/api/purchase", async (req, res) => {
   }
 })
 
-// Start Server
-const PORT = process.env.PORT || 5000
-app.listen(PORT, () => console.log(`Server running on port ${PORT}`))
+// Connect to MongoDB and Start Server
+mongoose
+  .connect(process.env.MONGO_URI, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  })
+  .then(() => {
+    const PORT = process.env.PORT || 5000
+    app.listen(PORT, () => console.log(`Server running on port ${PORT}`))
+  })
+  .catch((err) => console.error("Error connecting to MongoDB:", err))
