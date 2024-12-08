@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom"
 import axios from "axios"
 // import "./LoginForm.css"
 
-function LoginForm() {
+function LoginForm({ handleLogin }) {
   const [formData, setFormData] = useState({ email: "", password: "" })
   const [error, setError] = useState("")
   const [isLoading, setIsLoading] = useState(false)
@@ -28,6 +28,7 @@ function LoginForm() {
       // Save token to localStorage or context
       localStorage.setItem("authToken", response.data.token)
       navigate("/innlogget")
+      handleLogin()
     } catch (err) {
       console.error("Error during login:", err.response?.data || err.message)
       setError(
@@ -41,7 +42,7 @@ function LoginForm() {
   return (
     <form onSubmit={handleSubmit} className="loginForm">
       <div>
-        <label>email</label>
+        <label>Epost</label>
         <input
           type="email"
           name="email"
@@ -51,7 +52,7 @@ function LoginForm() {
         />
       </div>
       <div>
-        <label>Password</label>
+        <label>Passord</label>
         <input
           type="password"
           name="password"
@@ -60,8 +61,8 @@ function LoginForm() {
           required
         />
       </div>
-      <button type="submit" disabled={isLoading}>
-        {isLoading ? "Logging in..." : "Login"}
+      <button type="submit" disabled={isLoading} className="formSubmit">
+        <h3>{isLoading ? "Logging in..." : "Logg inn"}</h3>
       </button>
       {error && <p className="error">{error}</p>}
     </form>

@@ -17,6 +17,8 @@ function Navbar({
   setSearchText,
   // cartProducts,
   // setCartProducts,
+  isLoggedIn,
+  handleLogout,
 }) {
   const { cart, setCart } = useCart()
 
@@ -179,11 +181,20 @@ function Navbar({
             <>
               <div className="loginContainer">
                 <Link
-                  onClick={() => resetNavbar()}
+                  onClick={() => {
+                    handleLogout()
+                    resetNavbar()
+                  }}
                   className="link"
-                  to="/innlogging"
+                  to={`${isLoggedIn ? "/" : "/innlogging"}`}
                 >
-                  <div className="login-wide">Logg inn</div>
+                  {isLoggedIn ? (
+                    <button className="login-wide" onClick={() => handleLogout}>
+                      Logg ut
+                    </button>
+                  ) : (
+                    <button className="login-wide">Logg inn</button>
+                  )}
                   <div className="login-narrow">
                     <i className="fa fa-user"></i>
                   </div>

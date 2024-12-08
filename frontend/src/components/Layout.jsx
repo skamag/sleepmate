@@ -16,6 +16,8 @@ function Layout({
   setSearchText,
   // cartProducts,
   // setCartProducts,
+  isLoggedIn,
+  handleLogout,
 }) {
   return (
     <div className="layout">
@@ -34,6 +36,8 @@ function Layout({
         setSearchText={setSearchText}
         // cartProducts={cartProducts}
         // setCartProducts={setCartProducts}
+        isLoggedIn={isLoggedIn}
+        handleLogout={handleLogout}
       />
 
       {/* Main */}

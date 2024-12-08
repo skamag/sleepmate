@@ -27,6 +27,10 @@ function App() {
 
   const [searchText, setSearchText] = useState("")
 
+  const [isLoggedIn, setIsLoggedIn] = useState(
+    !!localStorage.getItem("authToken")
+  )
+
   useEffect(() => {
     const fetchItems = async () => {
       try {
@@ -36,6 +40,12 @@ function App() {
         // console.log(selectedProduct)
         // console.log(selectedItemIndex)
         // setLoading(false)
+
+        const token = localStorage.getItem("authToken")
+        if (token) {
+          setIsLoggedIn(true)
+        }
+        console.log(token, isLoggedIn)
       } catch (error) {
         console.error("Error fetching items:", error)
         // setLoading(false)
@@ -44,13 +54,25 @@ function App() {
     }
 
     fetchItems()
-  }, [])
+  }, [isLoggedIn])
 
   const resetNavbar = () => {
     setIsSearch(false)
     setIsCart(false)
     setIsBurgerToggle(false)
     setSearchText("")
+  }
+
+  const handleLogin = () => {
+    const token = localStorage.getItem("authToken")
+    if (token) {
+      setIsLoggedIn(true)
+    }
+  }
+
+  const handleLogout = () => {
+    localStorage.removeItem("authToken")
+    setIsLoggedIn(false)
   }
 
   return (
@@ -74,6 +96,8 @@ function App() {
                 setSearchText={setSearchText}
                 // cartProducts={cartProducts}
                 // setCartProducts={setCartProducts}
+                isLoggedIn={isLoggedIn}
+                handleLogout={handleLogout}
               />
             }
           >
@@ -84,7 +108,10 @@ function App() {
             <Route path="/om" element={<About />} />
             <Route path="/produkter" element={<Products />} />
             <Route path="/kontakt" element={<Contact />} />
-            <Route path="/innlogging" element={<LoginPage />} />
+            <Route
+              path="/innlogging"
+              element={<LoginPage handleLogin={handleLogin} />}
+            />
             <Route
               path="/handlevogn"
               element={

@@ -48,7 +48,7 @@ function RegistrationForm() {
   return (
     <form onSubmit={handleSubmit} className="registrationForm">
       <div>
-        <label>Username:</label>
+        <label>Brukernavn</label>
         <input
           type="text"
           name="username"
@@ -58,7 +58,7 @@ function RegistrationForm() {
         />
       </div>
       <div>
-        <label>Email:</label>
+        <label>Epost</label>
         <input
           type="email"
           name="email"
@@ -68,7 +68,7 @@ function RegistrationForm() {
         />
       </div>
       <div>
-        <label>Password:</label>
+        <label>Passord</label>
         <input
           type="password"
           name="password"
@@ -78,7 +78,7 @@ function RegistrationForm() {
         />
       </div>
       <div>
-        <label>Confirm Password:</label>
+        <label>Bekreft passord</label>
         <input
           type="password"
           name="confirmPassword"
@@ -87,7 +87,9 @@ function RegistrationForm() {
           required
         />
       </div>
-      <button type="submit">Register</button>
+      <button type="submit" className="formSubmit">
+        <h3>Registrer</h3>
+      </button>
       {error && <p className="error">{error}</p>}
       {success && <p className="success">{success}</p>}
     </form>
