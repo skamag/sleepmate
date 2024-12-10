@@ -11,6 +11,7 @@ import ProductPage from "./pages/ProductPage/ProductPage"
 import LoginPage from "./pages/LoginPage/LoginPage"
 import ShoppingCart from "./pages/ShoppingCart/ShoppingCart"
 import Success from "./pages/Success/Success"
+import PaymentPage from "./pages/PaymentPage/PaymentPage"
 import Innlogget from "./pages/Innlogget/Innlogget"
 import "./styles/globals.css"
 
@@ -136,6 +137,7 @@ function App() {
               }
             />
             <Route path="/suksess" element={<Success />} />
+            <Route path="/betaling" element={<PaymentPage />} />
             <Route path="/innlogget" element={<Innlogget />} />
             {/* <Route path="*" element={<NotFound />} /> */}
           </Route>

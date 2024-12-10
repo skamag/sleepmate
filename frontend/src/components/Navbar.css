@@ -199,7 +199,7 @@
 }
 
 /* "Styling" for smalere skjermstørrelser */
-@media screen and (max-width: 1200px) {
+@media screen and (max-width: 900px) {
   .navLinksContainer {
     position: fixed;
     /* top: 100px; */
@@ -238,7 +238,7 @@
     display: block;
   }
 }
-@media screen and (max-width: 800px) {
+@media screen and (max-width: 600px) {
   .loginContainer .login-wide {
     display: none;
   }
@@ -253,14 +253,6 @@
   .navbar .logo-narrow {
     display: block;
     margin-right: 1rem;
-  }
-}
-@media screen and (max-width: 400px) {
-  .searchLoginCart {
-    gap: 1rem;
-  }
-  .burger {
-    margin-left: 1rem;
   }
 }
 

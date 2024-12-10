@@ -1,0 +1,34 @@
+.paymentHeader {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  font-family: Arial, sans-serif;
+}
+
+.payment-page h1 {
+  font-size: 2rem;
+  margin-bottom: 10px;
+}
+
+.payment-page p {
+  font-size: 1rem;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.payment-page .paymentComponent {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.payment-page .payment-component {
+  width: 100%;
+}
+.payment-page form button {
+  background-color: #24a0ed;
+  /* padding: 1rem; */
+  /* border-radius: 0.5rem; */
+}

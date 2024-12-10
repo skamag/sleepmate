@@ -41,6 +41,9 @@ Dette prosjektet benytter følgende teknologier:
 - **Mongoose**: JavaScript bibliotek som forenkler interaksjon med MongoDB i Node.js.
 - **Axios**: HTTP-klient for å hente data fra backend til frontend.
 - **React**: Frontend-rammeverk.
+- **JSON Web Token**: Pollett for autentisering av brukere.
+- **Stripe**: Betalingsløsning (ikke integrert per 10.12.2024).
+- **Render**: Skylagrinsplatform for hosting av front- og backend (ikke integrert per 10.12.2024).
 
 ## Instruksjoner
 
@@ -108,20 +111,14 @@ Vis data i frontend: Når dataene er hentet, kan de vises i frontend som en list
 
 ### Gjennom dette prosjektet har jeg:
 
-- Bygget et fullt fungerende backend-API med Express.js og MongoDB.
-- Implementert datamodellen Item for å håndtere produktdata effektivt.
-- Koblet frontend-applikasjonen (React) til backend via Axios for å hente produktdata.
-- Implementert en enkel og brukervennlig måte å vise produkter på i frontend.
-- Lært hvordan man setter opp og konfigurerer MongoDB for lagring av data.
-- Prosjektet har gitt meg praktisk erfaring med å bygge en fullstack-applikasjon.
+- Prosjektet har gitt meg praktisk erfaring med å bygge en fullstack-applikasjon hvor jeg har integrert et fullt fungerende backend-API med Express.js og MongoDB.
+- Implementert en enkel og brukervennlig måte å vise produkter på i frontend og koblet frontend-applikasjonen (React) til backend via Axios for å hente produktdata.
+- Fått bygget på tidligere erfaring med API-testing gjennom Postman.
 
 ### Fremtidige Forbedringer
 
-- Brukerautentisering: Legge til funksjonalitet for å registrere og logge inn brukere slik at de kan legge til produkter i en handlekurv og fullføre kjøp.
-- Produktfiltrering og sortering: Legge til muligheter for å filtrere og sortere produkter etter pris, kategori eller vurdering.
-- Betalingssystem: Integrere et betalingssystem (for eksempel Stripe eller PayPal) for å tillate brukere å betale for produktene sine.
-- Responsiv design: Forbedre frontend-grensesnittet for bedre støtte på mobile enheter.
-- Testdekningsgrad: Legge til tester for både backend-API-er og frontend-komponenter.
+- Katalogside med produktfiltrering og sortering, "om"-side med informasjon om butikken, "kontakt"-side.
+- Betalingssystem: Integrere et betalingssystem (for eksempel Stripe og/eller Vipps) for å tillate brukere å betale for produktene sine.
 
 ## Lisens
 

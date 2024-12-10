@@ -5,7 +5,7 @@ function DiscountCategories() {
   return (
     <>
       <section className="discountCategories">
-        <Link to="/produkter" className="categoryLink">
+        <Link to="/produkter" className="categoryLink link">
           <div className="bedSection">
             <div className="textContainer">
               <h1>Seng</h1>
@@ -20,7 +20,7 @@ function DiscountCategories() {
           </div>
         </Link>
         <div className="soundAndElectronicsSection">
-          <Link to="/produkter" className="soundSection">
+          <Link to="/produkter" className="soundSection link">
             <div className="textContainer">
               <h1>Lyddemping</h1>
               <p>
@@ -28,7 +28,10 @@ function DiscountCategories() {
               </p>
             </div>
           </Link>
-          <Link to="/produkter" className="categoryLink electronicsSection">
+          <Link
+            to="/produkter"
+            className="categoryLink link electronicsSection"
+          >
             <div className="textContainer">
               <h1>Elektronikk</h1>
               <p>

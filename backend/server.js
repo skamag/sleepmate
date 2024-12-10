@@ -5,6 +5,8 @@ const dotenv = require("dotenv")
 
 const registerRoute = require("./routes/auth/register")
 const loginRoute = require("./routes/auth/login")
+const paymentRoute = require("./routes/payment/paymentRoute")
+
 const authenticate = require("./routes/auth/authenticate")
 const Item = require("./models/Item")
 
