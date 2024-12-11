@@ -3,14 +3,14 @@ const mongoose = require("mongoose")
 const cors = require("cors")
 const dotenv = require("dotenv")
 
+dotenv.config()
+
 const registerRoute = require("./routes/auth/register")
 const loginRoute = require("./routes/auth/login")
 const paymentRoute = require("./routes/payment/paymentRoute")
 
 const authenticate = require("./routes/auth/authenticate")
 const Item = require("./models/Item")
-
-dotenv.config()
 
 const app = express()
 
@@ -21,6 +21,7 @@ app.use(express.json())
 // Routes
 app.use("/api/register", registerRoute)
 app.use("/api/login", loginRoute)
+app.use("/api", paymentRoute)
 
 app.get("/api/protected", authenticate, (req, res) => {
   res.status(200).json({ message: "Access granted!" })

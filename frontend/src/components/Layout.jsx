@@ -54,7 +54,7 @@ function Layout({
       {/* Footer */}
       {!isLoginPage && (
         <footer>
-          <p>&copy; 2024 Your Company. All rights reserved.</p>
+          <p>&copy; 2024 Butikknavn.</p>
         </footer>
       )}
     </div>

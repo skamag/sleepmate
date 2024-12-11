@@ -16,9 +16,12 @@ function Payment() {
     setIsProcessing(true)
 
     try {
-      const { data } = await axios.post("/api/create-payment-intent", {
-        amount: 5000, // Amount in cents
-      })
+      const { data } = await axios.post(
+        "http://localhost:5000/api/create-payment-intent",
+        {
+          amount: 5000,
+        }
+      )
 
       const cardElement = elements.getElement(CardElement)
 

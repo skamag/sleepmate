@@ -1,39 +1,12 @@
 # Nettbutikk Prosjekt
 
-En nettbutikkapplikasjon som bl.a. lar brukere handle diverse søvn-relaterte produkter. Backend-delen av prosjektet gir tilgang til produktdata via en API, og frontend-delen viser disse dataene på en brukervennlig måte. Dette prosjektet benytter MongoDB som database og Express.js for backend-API-et.
+En nettbutikkapplikasjon for en imaginær butikk som selger søvnrelaterte produkter. Backend-delen av prosjektet gir tilgang til produkt- og brukerdata, mens frontend-delen viser butikkens brukergrensesnitt.
 
 ## Hvorfor er backend-data viktig for prosjektet?
 
-Backend-data er essensielt for prosjektet fordi det gir en strukturert måte å lagre, hente og administrere produktinformasjon på. Uten et backend-system vil det være vanskelig å oppdatere og administrere store mengder data, spesielt når det gjelder produkter, priser og lagerstatus. Med en API som kobles til en database som MongoDB, kan vi effektivt hente og vise produkter på frontend, samtidig som vi kan utføre CRUD-operasjoner (Create, Read, Update, Delete) på dataene.
-
-Backend gir også muligheten til å håndtere autentisering, autorisering, og kommunikasjon mellom server og klient, noe som er avgjørende for en dynamisk og funksjonell nettbutikk.
-
-### Databaseskjema
-
-```javascript
-{
-  "_id": "ObjectId", // Automatisk generert av MongoDB
-  "id": "Number", // Unik ID for produktet
-  "name": "String", // Produktnavn
-  "description": "String", // Produktbeskrivelse
-  "price": "Number", // Pris på produktet
-  "currency": "String", // Valuta, for eksempel "NOK"
-  "category": "String", // Kategori, for eksempel "Sengeartikler"
-  "subCategory": "String", // Underkategori, for eksempel "Sengetøy"
-  "stock": "Number", // Antall på lager
-  "sizes": ["String"], // Tilgjengelige størrelser, f.eks. ["Single", "Queen", "King"]
-  "colors": ["String"], // Tilgjengelige farger, f.eks. ["Hvit", "Grå"]
-  "rating": "Number", // Gjennomsnittlig vurdering
-  "images": ["String"], // Array med URL-er til produktbilder
-  "isFeatured": "Boolean", // Markering for om produktet skal fremheves
-  "createdAt": "Date", // Når produktet ble lagt til
-  "updatedAt": "Date" // Når produktet sist ble oppdatert
-}
-```
+Backend-data er essensielt for prosjektet fordi det gir en strukturert måte å lagre, hente og administrere produkt- og brukerinformasjon på. Uten et backend-system vil det være vanskelig å oppdatere og administrere store mengder data. Med en API som kobles til en database som MongoDB, kan vi effektivt hente og vise produkter på nettsiden, samtidig som vi kan utføre CRUD-operasjoner på dataene.
 
 ## Teknologier Brukt
-
-Dette prosjektet benytter følgende teknologier:
 
 - **Node.js**: JavaScript runtime brukt for å kjøre backend-serveren.
 - **Express.js**: Rammeverk for å bygge backend API-er og håndtere HTTP-forespørsler.
