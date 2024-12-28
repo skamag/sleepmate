@@ -1,7 +1,7 @@
 import { useState } from "react"
 import LoginForm from "../../components/LoginForm"
 import RegistrationForm from "../../components/RegistrationForm"
-import "./LoginPage.css"
+// import "./LoginPage.css"
 
 function LoginPage({ handleLogin }) {
   const [showRegistration, setShowRegistration] = useState(false)

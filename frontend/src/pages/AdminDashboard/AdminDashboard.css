@@ -1,0 +1,24 @@
+.adminDashboard {
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+}
+.adminDashboard .dashboardTopStats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+  width: 100%;
+}
+.adminDashboard .dashboardTopStats .stat {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding: 2rem 1rem;
+}
+.adminDashboard .textContainer h1,
+.adminDashboard .textContainer p {
+  color: white;
+}
+.adminDashboard .dashboardTopStats .stat .imageContainer img {
+  height: 4rem;
+}

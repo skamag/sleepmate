@@ -1,6 +1,8 @@
 import { Outlet, useLocation } from "react-router-dom"
 import Navbar from "./Navbar"
+import AdminNavbar from "./AdminNavbar"
 import "./Layout.css"
+import { useState } from "react"
 
 function Layout({
   data,
@@ -22,11 +24,14 @@ function Layout({
   const location = useLocation()
 
   const isLoginPage = location.pathname === "/innlogging"
+  const isAdminLogin = location.pathname === "/admin"
+
+  const [isAdmin, setIsAdmin] = useState(true)
 
   return (
     <div className="layout">
       {/* Navbar */}
-      {!isLoginPage && (
+      {!(isLoginPage || isAdminLogin || isAdmin) && (
         <Navbar
           data={data}
           setSelectedProduct={setSelectedProduct}
@@ -47,15 +52,27 @@ function Layout({
       )}
 
       {/* Main */}
-      <main>
-        <Outlet />
-      </main>
+      {!isAdmin && (
+        <main>
+          <Outlet />
+        </main>
+      )}
 
       {/* Footer */}
-      {!isLoginPage && (
+      {!(isLoginPage || isAdminLogin || isAdmin) && (
         <footer>
           <p>&copy; 2024 Butikknavn.</p>
         </footer>
+      )}
+
+      {isAdmin && (
+        <>
+          <AdminNavbar>
+            <main>
+              <Outlet />
+            </main>
+          </AdminNavbar>
+        </>
       )}
     </div>
   )

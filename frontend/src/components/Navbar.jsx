@@ -215,8 +215,6 @@ function Navbar({
                   aria-label="Forhåndsvis handlevogn"
                 >
                   <i className="fa fa-shopping-cart"></i>
-                  <div className="cartIconCircle">{40}</div>
-
                   {cart.length > 0 && (
                     <div className="cartIconCircle">{cart.length}</div>
                   )}

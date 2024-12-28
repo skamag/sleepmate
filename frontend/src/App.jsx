@@ -13,6 +13,11 @@ import ShoppingCart from "./pages/ShoppingCart/ShoppingCart"
 import Success from "./pages/Success/Success"
 import PaymentPage from "./pages/PaymentPage/PaymentPage"
 import Innlogget from "./pages/Innlogget/Innlogget"
+import AdminLogin from "./pages/AdminLogin/AdminLogin"
+import AdminDashboard from "./pages/AdminDashboard/AdminDashboard"
+import AdminProducts from "./pages/AdminProducts/AdminProducts"
+import AdminOrders from "./pages/AdminOrders/AdminOrders"
+import AdminUsers from "./pages/AdminUsers/AdminUsers"
 import "./styles/globals.css"
 
 function App() {
@@ -139,6 +144,14 @@ function App() {
             <Route path="/suksess" element={<Success />} />
             <Route path="/betaling" element={<PaymentPage />} />
             <Route path="/innlogget" element={<Innlogget />} />
+
+            {/* Admin */}
+            <Route path="/admin" element={<AdminLogin />} />
+            <Route path="/admin-instrumentpanel" element={<AdminDashboard />} />
+            <Route path="/admin-katalog" element={<AdminProducts />} />
+            <Route path="/admin-salg" element={<AdminOrders />} />
+            <Route path="/admin-brukere" element={<AdminUsers />} />
+
             {/* <Route path="*" element={<NotFound />} /> */}
           </Route>
         </Routes>

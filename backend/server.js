@@ -8,8 +8,10 @@ dotenv.config()
 const registerRoute = require("./routes/auth/register")
 const loginRoute = require("./routes/auth/login")
 const paymentRoute = require("./routes/payment/paymentRoute")
-
 const authenticate = require("./routes/auth/authenticate")
+const itemRoutes = require("./routes/itemRoutes")
+const userRoutes = require("./routes/userRoutes")
+
 const Item = require("./models/Item")
 
 const app = express()
@@ -22,6 +24,8 @@ app.use(express.json())
 app.use("/api/register", registerRoute)
 app.use("/api/login", loginRoute)
 app.use("/api", paymentRoute)
+app.use("/api/items", itemRoutes)
+app.use("/api/users", userRoutes)
 
 app.get("/api/protected", authenticate, (req, res) => {
   res.status(200).json({ message: "Access granted!" })

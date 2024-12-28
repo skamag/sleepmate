@@ -1,0 +1,120 @@
+.adminNavbar *,
+.adminSidebar * {
+  color: white;
+}
+.adminNavbars {
+  display: flex;
+  width: 100%;
+}
+
+.adminSidebar {
+  min-height: 100vh;
+  width: fit-content;
+  padding: 0 2.5%;
+  background-color: #333;
+}
+.adminSidebar .adminLogo {
+  height: 75px;
+  display: flex;
+  align-items: center;
+}
+.adminSidebar .sideNav ul {
+  display: flex;
+  flex-direction: column;
+}
+.adminSidebar .sideNav ul li {
+  display: flex;
+}
+.adminSidebar .sideNav ul li .link {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  padding: 1rem 0;
+  cursor: pointer;
+  font-size: 0.875rem;
+}
+.adminSidebar .sideNav ul li span {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.adminSidebar .sideNav ul li img {
+  height: 1rem;
+}
+.adminSidebar .sideNav ul li i {
+  font-size: 0.5rem;
+  display: flex;
+  align-items: center;
+}
+.adminNavbars .rightContainer {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.adminNavbar {
+  width: 100%;
+  background-color: #333;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 75px;
+  padding-left: 1rem;
+  padding-right: 2.5%;
+}
+.adminNavbar .leftContainer {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+.adminNavbar .burger {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+.adminNavbar .burger div {
+  height: 3px;
+  width: 25px;
+  background-color: white;
+}
+.adminNavbar .searchBar {
+  background-color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 2rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+.adminNavbar .searchBar i {
+  color: #333;
+}
+.adminNavbar .searchBar input {
+  background-color: white;
+  color: #333;
+  border: none;
+}
+.adminNavbar .searchBar input:focus {
+  outline: none;
+  width: 100%;
+}
+.adminNavbar .cornerPanel {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+.adminNavbar .cornerPanel .icons {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.adminNavbar .cornerPanel .icons .icon {
+  height: 1.5rem;
+}
+.adminNavbar .cornerPanel .icons .icon img {
+  height: 100%;
+}
+.adminNavbar .cornerPanel .profileImageContainer {
+  height: 3rem;
+}
+.adminNavbar .cornerPanel .profileImageContainer img {
+  height: 100%;
+}

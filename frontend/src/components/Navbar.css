@@ -8,14 +8,6 @@
   border-bottom: 1px solid #ececf0;
 }
 
-/* Vise/skjule ulike logo-varianter basert på skjermstørrelse */
-.navbar .logo-wide {
-  display: block;
-}
-.navbar .logo-narrow {
-  display: none;
-}
-
 /* Menylenker */
 .navLinksContainer {
   display: block;
@@ -267,17 +259,6 @@
 }
 .search-inactive input {
   display: none;
-}
-
-/* "Styling" for "burger"-meny og sidemeny som kan skrus av/på */
-.line1-toggle {
-  transform: rotate(-45deg) translate(-5px, 6px);
-}
-.line2-toggle {
-  opacity: 0;
-}
-.line3-toggle {
-  transform: rotate(45deg) translate(-5px, -6px);
 }
 
 .navList-toggle {
