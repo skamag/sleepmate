@@ -36,15 +36,48 @@ function AdminProducts() {
   }
 
   return (
-    <div>
-      <h1>Products</h1>
+    <div className="adminProducts">
+      <h1>Produkter</h1>
+      <div className="actions-container">
+        <span className="text-input-container">
+          <i className="fa fa-search"></i>
+          <input type="text" placeholder="Finn produkt..." />
+        </span>
+        <button className="add-product">Legg til vare</button>
+      </div>
       {loading && <p>Loading...</p>}
       {error && <p>{error}</p>}
       <ul>
-        {products.map((product) => (
-          <li key={product._id}>
-            {product.name} - ${product.price} (Stock: {product.stock})
-            <button onClick={() => handleUpdateProduct()}></button>
+        <li className="list-header">
+          <span className="justify-center">
+            <select name="handlinger" id="" value="">
+              <option value="options-title">--</option>
+              <option value="option-1">1</option>
+              <option value="option-2">2</option>
+              <option value="option-3">3</option>
+            </select>
+          </span>
+          <span>Navn</span>
+          <span>Pris</span>
+          <span>På lager</span>
+          <span></span>
+        </li>
+        {products.map((product, index) => (
+          <li key={product._id} className={`${index % 2 === 0 ? "dark" : ""}`}>
+            <span className="justify-center">
+              <input type="checkbox" />
+            </span>
+            <span>{product.name}</span>
+            <span>{product.price} kr</span>
+            <span>{product.stock}</span>
+            <span className="justify-center">
+              <button
+                className="edit-button"
+                onClick={() => handleUpdateProduct()}
+              >
+                <i className="fa fa-edit"></i>
+              </button>
+            </span>
           </li>
         ))}
       </ul>
