@@ -1,5 +1,15 @@
 .adminProducts {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+.adminProducts-crop {
+  overflow: hidden;
+  height: 100vh;
+}
+.adminProducts main {
   padding: 1rem;
+
   display: flex;
   flex-direction: column;
 }
@@ -44,9 +54,19 @@
   display: grid;
   grid-template-columns: 1fr 6fr 2fr 2fr 1fr;
   padding: 1rem 0;
+  align-items: center;
+}
+.adminProducts ul li span {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
 }
 .adminProducts ul .dark {
   background-color: rgb(239, 239, 239);
+}
+.adminProducts .list-image {
+  height: 3rem;
+  width: 3rem;
 }
 .adminProducts .edit-button {
   color: blue;
@@ -54,4 +74,69 @@
 .justify-center {
   display: flex;
   justify-content: center;
+}
+
+/* Add product section */
+.adminProducts .add-product-section {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 10;
+  height: fit-content;
+  min-height: 100vh;
+  width: 100%;
+  background-color: #33333366;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow-y: auto;
+}
+.adminProducts .add-product {
+  min-width: 400px;
+  background-color: white;
+  padding: 2rem;
+  border-radius: 0.5rem;
+  display: flex;
+  flex-direction: column;
+}
+.adminProducts .add-product .header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 1.25rem;
+  margin-bottom: 3rem;
+}
+.adminProducts .x-button {
+  font-weight: bold;
+  color: #666;
+  align-self: flex-end;
+}
+.adminProducts .add-product form {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+.adminProducts .add-product form button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0.5rem 1rem;
+  width: fit-content;
+  border-radius: 0.25rem;
+  background-color: grey;
+  color: white;
+}
+.adminProducts .add-product form div {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.adminProducts .add-product .submit-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  background-color: #6772e5;
+  color: white;
 }

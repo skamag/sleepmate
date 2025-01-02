@@ -56,6 +56,9 @@ input::-webkit-inner-spin-button {
 .pointer {
   cursor: pointer;
 }
+.button-blue {
+  background-color: #6772e5;
+}
 
 /* Navbar og AdminNavbar */
 .navbar .logo-wide,
