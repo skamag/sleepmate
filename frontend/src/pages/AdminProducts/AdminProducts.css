@@ -116,6 +116,9 @@
   flex-direction: column;
   gap: 2rem;
 }
+.adminProducts .add-product form input {
+  padding: 0.25rem;
+}
 .adminProducts .add-product form button {
   display: flex;
   justify-content: center;
@@ -132,6 +135,76 @@
   gap: 0.5rem;
 }
 .adminProducts .add-product .submit-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  background-color: #6772e5;
+  color: white;
+}
+
+/* Update product section */
+.adminProducts .update-product-section {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 10;
+  height: fit-content;
+  min-height: 100vh;
+  width: 100%;
+  background-color: #33333366;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow-y: auto;
+}
+.adminProducts .update-product {
+  min-width: 400px;
+  background-color: white;
+  padding: 2rem;
+  border-radius: 0.5rem;
+  display: flex;
+  flex-direction: column;
+}
+.adminProducts .update-product .header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 3rem;
+}
+.adminProducts .update-product .header h1 {
+  font-size: 1.25rem;
+}
+.adminProducts .x-button {
+  font-weight: bold;
+  color: #666;
+  align-self: flex-end;
+}
+.adminProducts .update-product form {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+.adminProducts .update-product form input {
+  padding: 0.25rem;
+}
+.adminProducts .update-product form button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0.5rem 1rem;
+  width: fit-content;
+  border-radius: 0.25rem;
+  background-color: grey;
+  color: white;
+}
+.adminProducts .update-product form div {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.adminProducts .update-product .submit-button {
   display: flex;
   justify-content: center;
   align-items: center;

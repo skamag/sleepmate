@@ -51,7 +51,7 @@ function App() {
         if (token) {
           setIsLoggedIn(true)
         }
-        console.log(token, isLoggedIn)
+        // console.log(token, isLoggedIn)
       } catch (error) {
         console.error("Error fetching items:", error)
         // setLoading(false)

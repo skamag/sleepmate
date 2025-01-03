@@ -9,6 +9,9 @@ function AdminProducts() {
 
   const [searchInput, setSearchInput] = useState("")
   const [showAddProduct, setShowAddProduct] = useState(false)
+  const [showUpdateProduct, setShowUpdateProduct] = useState(false)
+  const [updateProduct, setUpdateProduct] = useState(null)
+  const [updateProductId, setUpdateProductId] = useState(null)
 
   const [newProduct, setNewProduct] = useState({
     name: "",
@@ -33,6 +36,10 @@ function AdminProducts() {
     fetchProducts()
   }, [])
 
+  // useEffect(() => {
+  //   console.log(updateProduct)
+  // }, [updateProductId])
+
   const handleInputChange = (e) => {
     const { id, value } = e.target
     setNewProduct((prev) => ({ ...prev, [id]: value }))
@@ -46,20 +53,26 @@ function AdminProducts() {
 
   const handleAddProduct = async (e) => {
     e.preventDefault()
-    try {
-      const { data } = await API.post("/items", newProduct) // Send POST request
-      setProducts((prev) => [...prev, data]) // Add the new product to the list
-      setShowAddProduct(false) // Close the form
-      setNewProduct({ name: "", price: "", stock: "", image: "" })
-    } catch (err) {
-      console.error("Error adding product:", err)
+
+    if (newProduct.name && newProduct.price && newProduct.stock) {
+      try {
+        const { data } = await API.post("/items", newProduct) // Send POST request
+        setProducts((prev) => [...prev, data]) // Add the new product to the list
+        setShowAddProduct(false) // Close the form
+        setNewProduct({ name: "", price: "", stock: "", image: "" })
+      } catch (err) {
+        console.error("Error adding product:", err)
+      }
+    } else {
+      alert(
+        "Alle obligatoriske felter (navn, pris og lagerstatus) må fylles ut."
+      )
     }
   }
 
   const handleUpdateProduct = async (id) => {
     try {
-      const updatedProduct = { stock: 50 } // Example: Update stock
-      const { data } = await API.put(`/items/${id}`, updatedProduct) // PUT /api/items/:id
+      const { data } = await API.put(`/items/${id}`, updateProduct) // PUT /api/items/:id
       setProducts((prev) =>
         prev.map((product) => (product._id === id ? data : product))
       )
@@ -69,7 +82,11 @@ function AdminProducts() {
   }
 
   return (
-    <div className={`adminProducts ${showAddProduct && "adminProducts-crop"}`}>
+    <div
+      className={`adminProducts ${
+        (showAddProduct || showUpdateProduct) && "adminProducts-crop"
+      }`}
+    >
       <main>
         <h1>Produkter</h1>
         <div className="actions-container">
@@ -127,9 +144,16 @@ function AdminProducts() {
                 <span>{product.price} kr</span>
                 <span>{product.stock}</span>
                 <span className="justify-center">
+                  {product.id}
                   <button
                     className="edit-button"
-                    onClick={() => handleUpdateProduct()}
+                    onClick={() => {
+                      setShowUpdateProduct(true)
+                      setUpdateProductId(product.id)
+                      setUpdateProduct(
+                        products.find((item) => product.id === item.id)
+                      )
+                    }}
                   >
                     <i className="fa fa-edit"></i>
                   </button>
@@ -196,6 +220,84 @@ function AdminProducts() {
               </button>
             </form>
           </div>
+        </section>
+      )}
+      {showUpdateProduct && (
+        <section className="update-product-section">
+          {products
+            .filter((product) => product.id === updateProductId)
+            .map((filteredProduct) => (
+              <div className="update-product" key={filteredProduct.id}>
+                <div className="header">
+                  <div className="header-text">
+                    <h1>Oppdater produkt</h1>
+                    <p>ID: {filteredProduct._id}</p>
+                  </div>
+                  <button
+                    className="x-button"
+                    onClick={() => setShowUpdateProduct(false)}
+                  >
+                    &#10005;
+                  </button>
+                </div>
+                <form
+                  onSubmit={(e) => {
+                    e.preventDefault()
+                    handleUpdateProduct(updateProduct._id)
+                  }}
+                >
+                  <div>
+                    <label htmlFor="image">Bilde(r)</label>
+                    <input
+                      type="text"
+                      id="image"
+                      placeholder={
+                        filteredProduct.images.length === 0
+                          ? "Ingen bilder"
+                          : filteredProduct.images.length > 1
+                          ? filteredProduct.images[0] + "..."
+                          : filteredProduct.images[0]
+                      }
+                      // value={newProduct.image}
+                      onChange={handleInputChange}
+                    />
+                  </div>
+                  <div>
+                    <label htmlFor="name">Produktnavn</label>
+                    <input
+                      type="text"
+                      id="name"
+                      placeholder={filteredProduct.name}
+                      // value={newProduct.name}
+                      onChange={handleInputChange}
+                    />
+                  </div>
+                  <div>
+                    <label htmlFor="price">Pris</label>
+                    <input
+                      type="number"
+                      id="price"
+                      placeholder={filteredProduct.price}
+                      // value={newProduct.price}
+                      onChange={handleInputChange}
+                    />
+                  </div>
+                  <div>
+                    <label htmlFor="stock">Antall på lager</label>
+                    <input
+                      type="number"
+                      id="stock"
+                      placeholder={filteredProduct.stock}
+                      // value={newProduct.stock}
+                      onChange={handleInputChange}
+                    />
+                  </div>
+                  <button type="submit" className="submit-button">
+                    Oppdater produkt
+                  </button>
+                </form>
+              </div>
+            ))}
         </section>
       )}
     </div>
