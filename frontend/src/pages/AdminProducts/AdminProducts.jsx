@@ -37,8 +37,8 @@ function AdminProducts() {
   }, [])
 
   // useEffect(() => {
-  //   console.log(updateProduct)
-  // }, [updateProductId])
+  //   console.log(updateProductId)
+  // }, [updateProduct])
 
   const handleInputChange = (e) => {
     const { id, value } = e.target
@@ -71,13 +71,31 @@ function AdminProducts() {
   }
 
   const handleUpdateProduct = async (id) => {
+    console.log("Updating product:", id, updateProduct)
     try {
       const { data } = await API.put(`/items/${id}`, updateProduct) // PUT /api/items/:id
       setProducts((prev) =>
         prev.map((product) => (product._id === id ? data : product))
       )
+      setShowUpdateProduct(false)
     } catch (err) {
       console.error("Error updating product:", err)
+    }
+  }
+
+  const handleDeleteProduct = async (id) => {
+    const confirmDelete = window.confirm(
+      "Er du sikker på at du vil slette produktet?"
+    )
+    if (confirmDelete) {
+      try {
+        await API.delete(`/items/${id}`) // Send DELETE request
+        setProducts((prev) => prev.filter((product) => product._id !== id)) // Remove the product from the list
+        setShowUpdateProduct(false)
+      } catch (err) {
+        console.error("Error deleting product:", err)
+        alert("Kunne ikke slette produktet. Prøv igjen senere.")
+      }
     }
   }
 
@@ -149,7 +167,7 @@ function AdminProducts() {
                     className="edit-button"
                     onClick={() => {
                       setShowUpdateProduct(true)
-                      setUpdateProductId(product.id)
+                      setUpdateProductId(product._id)
                       setUpdateProduct(
                         products.find((item) => product.id === item.id)
                       )
@@ -225,9 +243,9 @@ function AdminProducts() {
       {showUpdateProduct && (
         <section className="update-product-section">
           {products
-            .filter((product) => product.id === updateProductId)
+            .filter((product) => product._id === updateProductId)
             .map((filteredProduct) => (
-              <div className="update-product" key={filteredProduct.id}>
+              <div className="update-product" key={filteredProduct._id}>
                 <div className="header">
                   <div className="header-text">
                     <h1>Oppdater produkt</h1>
@@ -259,7 +277,11 @@ function AdminProducts() {
                           : filteredProduct.images[0]
                       }
                       // value={newProduct.image}
-                      onChange={handleInputChange}
+                      // onChange={handleInputChange}
+                      onChange={(e) => {
+                        const { id, value } = e.target
+                        setUpdateProduct((prev) => ({ ...prev, [id]: value }))
+                      }}
                     />
                   </div>
                   <div>
@@ -269,7 +291,11 @@ function AdminProducts() {
                       id="name"
                       placeholder={filteredProduct.name}
                       // value={newProduct.name}
-                      onChange={handleInputChange}
+                      // onChange={handleInputChange}
+                      onChange={(e) => {
+                        const { id, value } = e.target
+                        setUpdateProduct((prev) => ({ ...prev, [id]: value }))
+                      }}
                     />
                   </div>
                   <div>
@@ -279,7 +305,11 @@ function AdminProducts() {
                       id="price"
                       placeholder={filteredProduct.price}
                       // value={newProduct.price}
-                      onChange={handleInputChange}
+                      // onChange={handleInputChange}
+                      onChange={(e) => {
+                        const { id, value } = e.target
+                        setUpdateProduct((prev) => ({ ...prev, [id]: value }))
+                      }}
                     />
                   </div>
                   <div>
@@ -289,12 +319,25 @@ function AdminProducts() {
                       id="stock"
                       placeholder={filteredProduct.stock}
                       // value={newProduct.stock}
-                      onChange={handleInputChange}
+                      // onChange={handleInputChange}
+                      onChange={(e) => {
+                        const { id, value } = e.target
+                        setUpdateProduct((prev) => ({ ...prev, [id]: value }))
+                      }}
                     />
                   </div>
-                  <button type="submit" className="submit-button">
-                    Oppdater produkt
-                  </button>
+                  <div className="buttons-container">
+                    <button type="submit" className="submit-button">
+                      Oppdater produkt
+                    </button>
+                    <button
+                      type="button"
+                      className="delete-button"
+                      onClick={() => handleDeleteProduct(filteredProduct._id)}
+                    >
+                      Slett produkt
+                    </button>
+                  </div>
                 </form>
               </div>
             ))}

@@ -5,7 +5,6 @@
 }
 .adminProducts-crop {
   overflow: hidden;
-  height: 100vh;
 }
 .adminProducts main {
   padding: 1rem;
@@ -149,6 +148,7 @@
   position: absolute;
   top: 0;
   left: 0;
+  padding: 2rem;
   z-index: 10;
   height: fit-content;
   min-height: 100vh;
@@ -204,7 +204,14 @@
   flex-direction: column;
   gap: 0.5rem;
 }
-.adminProducts .update-product .submit-button {
+.adminProducts .update-product .buttons-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+.adminProducts .update-product .submit-button,
+.adminProducts .update-product .delete-button {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -212,4 +219,10 @@
   border-radius: 0.5rem;
   background-color: #6772e5;
   color: white;
+}
+.adminProducts .update-product .submit-button {
+  background-color: #6772e5;
+}
+.adminProducts .update-product .delete-button {
+  background-color: red;
 }

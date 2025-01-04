@@ -4,6 +4,35 @@
   flex-direction: column;
   gap: 1rem;
 }
+.adminUsers .actions-container {
+  padding: 1rem 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.adminUsers .text-input-container {
+  height: fit-content;
+  padding: 0.5rem 1rem;
+  display: flex;
+  gap: 0.5rem;
+  background-color: white;
+  border: 1px solid black;
+  border-radius: 2rem;
+}
+.adminUsers .text-input-container input {
+  height: fit-content;
+  width: fit-content;
+  border: none;
+}
+.adminUsers .text-input-container input:focus {
+  outline: none;
+}
+.adminUsers .actions-container button {
+  background-color: green;
+  color: white;
+  padding: 1rem;
+  border-radius: 0.5rem;
+}
 .adminUsers .list-header {
   background-color: #333;
 }
