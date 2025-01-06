@@ -7,8 +7,17 @@ function AdminUsers() {
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState("")
 
+  const [searchInput, setSearchInput] = useState("")
   const [showAddUser, setShowAddUser] = useState(false)
-  const [showUpdateUser, setShowUpdateUser] = useState(false)
+  const [showUpdateUser, setShowUpdateUser] = useState(true)
+  const [updateUser, setUpdateUser] = useState(null)
+  const [updateUserId, setUpdateUserId] = useState(null)
+
+  const [newUser, setNewUser] = useState({
+    username: "",
+    email: "",
+    role: "",
+  })
 
   useEffect(() => {
     const fetchUsers = async () => {
@@ -26,50 +35,54 @@ function AdminUsers() {
     fetchUsers()
   }, [])
 
-  // const handleAddProduct = async (e) => {
-  //   e.preventDefault()
+  const handleInputChange = (e) => {
+    const { id, value } = e.target
+    setNewUser((prev) => ({ ...prev, [id]: value }))
+    console.log(newUser)
+  }
 
-  //   if (newProduct.name && newProduct.price && newProduct.stock) {
-  //     try {
-  //       const { data } = await API.post("/items", newProduct) // Send POST request
-  //       setProducts((prev) => [...prev, data]) // Add the new product to the list
-  //       setShowAddProduct(false) // Close the form
-  //       setNewProduct({ name: "", price: "", stock: "", image: "" })
-  //     } catch (err) {
-  //       console.error("Error adding product:", err)
-  //     }
-  //   } else {
-  //     alert(
-  //       "Alle obligatoriske felter (navn, pris og lagerstatus) må fylles ut."
-  //     )
-  //   }
-  // }
+  const handleAddUser = async (e) => {
+    e.preventDefault()
 
-  // const handleUpdateProduct = async (id) => {
-  //   console.log("Updating product:", id, updateProduct)
+    if (newUser.username && newUser.email && newUser.role) {
+      try {
+        const { data } = await API.post("/users", newUser) // Send POST request
+        setUsers((prev) => [...prev, data]) // Add the new user to the list
+        setShowAddUser(false) // Close the form
+        setNewUser({ username: "", email: "", role: "" })
+      } catch (err) {
+        console.error("Error adding user:", err)
+      }
+    } else {
+      alert("Alle obligatoriske felter (navn, epost og rolle) må fylles ut.")
+    }
+  }
+
+  // const handleUpdateUser = async (id) => {
+  //   console.log("Updating user:", id, updateUser)
   //   try {
-  //     const { data } = await API.put(`/items/${id}`, updateProduct) // PUT /api/items/:id
-  //     setProducts((prev) =>
-  //       prev.map((product) => (product._id === id ? data : product))
+  //     const { data } = await API.put(`/users/${id}`, updateUser) // PUT /api/users/:id
+  //     setUsers((prev) =>
+  //       prev.map((user) => (user._id === id ? data : user))
   //     )
-  //     setShowUpdateProduct(false)
+  //     setShowUpdateUser(false)
   //   } catch (err) {
-  //     console.error("Error updating product:", err)
+  //     console.error("Error updating user:", err)
   //   }
   // }
 
-  // const handleDeleteProduct = async (id) => {
+  // const handleDeleteUser = async (id) => {
   //   const confirmDelete = window.confirm(
-  //     "Er du sikker på at du vil slette produktet?"
+  //     "Er du sikker på at du vil slette brukeren?"
   //   )
   //   if (confirmDelete) {
   //     try {
-  //       await API.delete(`/items/${id}`) // Send DELETE request
-  //       setProducts((prev) => prev.filter((product) => product._id !== id)) // Remove the product from the list
-  //       setShowUpdateProduct(false)
+  //       await API.delete(`/users/${id}`) // Send DELETE request
+  //       setUsers((prev) => prev.filter((user) => user._id !== id)) // Remove the user from the list
+  //       setShowUpdateUser(false)
   //     } catch (err) {
-  //       console.error("Error deleting product:", err)
-  //       alert("Kunne ikke slette produktet. Prøv igjen senere.")
+  //       console.error("Error deleting user:", err)
+  //       alert("Kunne ikke slette brukeren. Prøv igjen senere.")
   //     }
   //   }
   // }
@@ -83,6 +96,7 @@ function AdminUsers() {
             <i className="fa fa-search"></i>
             <input
               type="text"
+              value={searchInput}
               placeholder="Finn bruker..."
               onChange={(e) => setSearchInput(e.target.value)}
             />
@@ -138,7 +152,7 @@ function AdminUsers() {
         <section className="add-user-section">
           <div className="add-user">
             <div className="header">
-              <span>Nytt produkt</span>
+              <span>Ny bruker</span>
               <button
                 className="x-button"
                 onClick={() => setShowAddUser(false)}
@@ -148,47 +162,37 @@ function AdminUsers() {
             </div>
             <form onSubmit={handleAddUser}>
               <div>
-                <label htmlFor="image">Bilde</label>
+                <label htmlFor="username">Navn</label>
                 <input
                   type="text"
-                  id="image"
-                  placeholder="Skriv bildets URL"
-                  value={newUser.image}
-                  onChange={handleInputChange}
-                />
-              </div>
-              <div>
-                <label htmlFor="name">Produktnavn</label>
-                <input
-                  type="text"
-                  id="name"
+                  id="username"
                   placeholder="Skriv navn"
-                  value={newUser.name}
+                  value={newUser.username}
                   onChange={handleInputChange}
                 />
               </div>
               <div>
-                <label htmlFor="price">Pris</label>
+                <label htmlFor="price">Epost</label>
                 <input
-                  type="number"
-                  id="price"
-                  placeholder="Skriv pris"
+                  type="text"
+                  id="email"
+                  placeholder="Skriv epost"
                   value={newUser.price}
                   onChange={handleInputChange}
                 />
               </div>
               <div>
-                <label htmlFor="stock">Antall på lager</label>
+                <label htmlFor="stock">Rolle</label>
                 <input
-                  type="number"
-                  id="stock"
-                  placeholder="Skriv antall"
-                  value={newUser.stock}
+                  type="text"
+                  id="role"
+                  placeholder="Skriv rolle"
+                  value={newUser.role}
                   onChange={handleInputChange}
                 />
               </div>
               <button type="submit" className="submit-button">
-                Legg til produkt
+                Legg til bruker
               </button>
             </form>
           </div>
@@ -202,7 +206,7 @@ function AdminUsers() {
               <div className="update-user" key={filteredUser._id}>
                 <div className="header">
                   <div className="header-text">
-                    <h1>Oppdater produkt</h1>
+                    <h1>Oppdater bruker</h1>
                     <p>ID: {filteredUser._id}</p>
                   </div>
                   <button
@@ -239,12 +243,12 @@ function AdminUsers() {
                     />
                   </div>
                   <div>
-                    <label htmlFor="name">Produktnavn</label>
+                    <label htmlFor="username">Brukernavn</label>
                     <input
                       type="text"
-                      id="name"
-                      placeholder={filteredUser.name}
-                      // value={newUser.name}
+                      id="username"
+                      placeholder={filteredUser.userusername}
+                      // value={newUser.username}
                       // onChange={handleInputChange}
                       onChange={(e) => {
                         const { id, value } = e.target
@@ -253,11 +257,11 @@ function AdminUsers() {
                     />
                   </div>
                   <div>
-                    <label htmlFor="price">Pris</label>
+                    <label htmlFor="price">Epost</label>
                     <input
-                      type="number"
-                      id="price"
-                      placeholder={filteredUser.price}
+                      type="email"
+                      id="email"
+                      placeholder={filteredUser.email}
                       // value={newUser.price}
                       // onChange={handleInputChange}
                       onChange={(e) => {
@@ -267,11 +271,11 @@ function AdminUsers() {
                     />
                   </div>
                   <div>
-                    <label htmlFor="stock">Antall på lager</label>
+                    <label htmlFor="stock">Role</label>
                     <input
-                      type="number"
-                      id="stock"
-                      placeholder={filteredUser.stock}
+                      type="text"
+                      id="role"
+                      placeholder={filteredUser.role}
                       // value={newUser.stock}
                       // onChange={handleInputChange}
                       onChange={(e) => {

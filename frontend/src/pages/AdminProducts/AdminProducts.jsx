@@ -112,6 +112,7 @@ function AdminProducts() {
             <i className="fa fa-search"></i>
             <input
               type="text"
+              value={searchInput}
               placeholder="Finn produkt..."
               onChange={(e) => setSearchInput(e.target.value)}
             />
