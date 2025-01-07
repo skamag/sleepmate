@@ -17,6 +17,7 @@ function AdminUsers() {
     username: "",
     email: "",
     role: "",
+    password: "",
   })
 
   useEffect(() => {
@@ -49,12 +50,15 @@ function AdminUsers() {
         const { data } = await API.post("/users", newUser) // Send POST request
         setUsers((prev) => [...prev, data]) // Add the new user to the list
         setShowAddUser(false) // Close the form
-        setNewUser({ username: "", email: "", role: "" })
+        setNewUser({ username: "", email: "", role: "", password: "" })
+        alert("Ny bruker opprettet!")
       } catch (err) {
         console.error("Error adding user:", err)
       }
     } else {
-      alert("Alle obligatoriske felter (navn, epost og rolle) må fylles ut.")
+      alert(
+        "Alle obligatoriske felter (navn, epost, rolle og passord) må fylles ut."
+      )
     }
   }
 
@@ -126,7 +130,7 @@ function AdminUsers() {
             <span>Brukernavn</span>
             <span>Epost</span>
             <span>Rolle</span>
-            <span></span>
+            <span>Passord</span>
           </li>
           {users.map((user, index) => (
             <li key={user._id} className={`${index % 2 === 0 ? "dark" : ""}`}>
@@ -136,6 +140,7 @@ function AdminUsers() {
               <span>{user.username}</span>
               <span>{user.email}</span>
               <span>{user.role}</span>
+              <span>{user.password.slice(0, 3) + "..."}</span>
               <span className="justify-center">
                 <button
                   className="edit-button"
@@ -162,7 +167,7 @@ function AdminUsers() {
             </div>
             <form onSubmit={handleAddUser}>
               <div>
-                <label htmlFor="username">Navn</label>
+                <label htmlFor="username">Brukernavn</label>
                 <input
                   type="text"
                   id="username"
@@ -172,22 +177,32 @@ function AdminUsers() {
                 />
               </div>
               <div>
-                <label htmlFor="price">Epost</label>
+                <label htmlFor="email">Epost</label>
                 <input
                   type="text"
                   id="email"
                   placeholder="Skriv epost"
-                  value={newUser.price}
+                  value={newUser.email}
                   onChange={handleInputChange}
                 />
               </div>
               <div>
-                <label htmlFor="stock">Rolle</label>
+                <label htmlFor="role">Rolle</label>
                 <input
                   type="text"
                   id="role"
                   placeholder="Skriv rolle"
                   value={newUser.role}
+                  onChange={handleInputChange}
+                />
+              </div>
+              <div>
+                <label htmlFor="password">Passord</label>
+                <input
+                  type="text"
+                  id="password"
+                  placeholder="Skriv passord"
+                  value={newUser.password}
                   onChange={handleInputChange}
                 />
               </div>
