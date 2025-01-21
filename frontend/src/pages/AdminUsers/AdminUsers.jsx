@@ -62,34 +62,32 @@ function AdminUsers() {
     }
   }
 
-  // const handleUpdateUser = async (id) => {
-  //   console.log("Updating user:", id, updateUser)
-  //   try {
-  //     const { data } = await API.put(`/users/${id}`, updateUser) // PUT /api/users/:id
-  //     setUsers((prev) =>
-  //       prev.map((user) => (user._id === id ? data : user))
-  //     )
-  //     setShowUpdateUser(false)
-  //   } catch (err) {
-  //     console.error("Error updating user:", err)
-  //   }
-  // }
+  const handleUpdateUser = async (id) => {
+    console.log("Updating user:", id, updateUser)
+    try {
+      const { data } = await API.put(`/users/${id}`, updateUser) // PUT /api/users/:id
+      setUsers((prev) => prev.map((user) => (user._id === id ? data : user)))
+      setShowUpdateUser(false)
+    } catch (err) {
+      console.error("Error updating user:", err)
+    }
+  }
 
-  // const handleDeleteUser = async (id) => {
-  //   const confirmDelete = window.confirm(
-  //     "Er du sikker på at du vil slette brukeren?"
-  //   )
-  //   if (confirmDelete) {
-  //     try {
-  //       await API.delete(`/users/${id}`) // Send DELETE request
-  //       setUsers((prev) => prev.filter((user) => user._id !== id)) // Remove the user from the list
-  //       setShowUpdateUser(false)
-  //     } catch (err) {
-  //       console.error("Error deleting user:", err)
-  //       alert("Kunne ikke slette brukeren. Prøv igjen senere.")
-  //     }
-  //   }
-  // }
+  const handleDeleteUser = async (id) => {
+    const confirmDelete = window.confirm(
+      "Er du sikker på at du vil slette brukeren?"
+    )
+    if (confirmDelete) {
+      try {
+        await API.delete(`/users/${id}`) // Send DELETE request
+        setUsers((prev) => prev.filter((user) => user._id !== id)) // Remove the user from the list
+        setShowUpdateUser(false)
+      } catch (err) {
+        console.error("Error deleting user:", err)
+        alert("Kunne ikke slette brukeren. Prøv igjen senere.")
+      }
+    }
+  }
 
   return (
     <div className="adminUsers">
@@ -144,7 +142,13 @@ function AdminUsers() {
               <span className="justify-center">
                 <button
                   className="edit-button"
-                  onClick={() => handleUpdateUser()}
+                  onClick={() => {
+                    setShowUpdateUser(true)
+                    setUpdateUserId(user._id)
+                    setUpdateUser(
+                      users.find((foundUser) => user.id === foundUser.id)
+                    )
+                  }}
                 >
                   <i className="fa fa-edit"></i>
                 </button>
@@ -237,7 +241,7 @@ function AdminUsers() {
                     handleUpdateUser(updateUser._id)
                   }}
                 >
-                  <div>
+                  {/* <div>
                     <label htmlFor="image">Bilde(r)</label>
                     <input
                       type="text"
@@ -256,7 +260,7 @@ function AdminUsers() {
                         setUpdateUser((prev) => ({ ...prev, [id]: value }))
                       }}
                     />
-                  </div>
+                  </div> */}
                   <div>
                     <label htmlFor="username">Brukernavn</label>
                     <input

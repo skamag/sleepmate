@@ -1,0 +1,35 @@
+footer {
+  display: flex;
+  flex-direction: column;
+  background-color: #333;
+}
+footer h1,
+footer p,
+footer li {
+  color: white;
+}
+.footer-main {
+  border-bottom: 1px solid grey;
+}
+.footer-main .footer-content {
+  display: flex;
+  justify-content: space-between;
+  gap: 2rem;
+  padding: 2rem 5%;
+}
+.footer-main .footer-content div {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.footer-main h1 {
+  font-weight: 300;
+}
+.footer-main li {
+  list-style-type: none;
+}
+.footer-footer {
+  display: flex;
+  justify-content: center;
+  padding: 1rem;
+}

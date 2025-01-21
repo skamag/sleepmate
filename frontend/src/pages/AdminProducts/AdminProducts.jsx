@@ -8,6 +8,8 @@ function AdminProducts() {
   const [error, setError] = useState("")
 
   const [searchInput, setSearchInput] = useState("")
+  const [selectedProducts, setSelectedProducts] = useState([])
+
   const [showAddProduct, setShowAddProduct] = useState(false)
   const [showUpdateProduct, setShowUpdateProduct] = useState(false)
   const [updateProduct, setUpdateProduct] = useState(null)
@@ -68,6 +70,23 @@ function AdminProducts() {
         "Alle obligatoriske felter (navn, pris og lagerstatus) må fylles ut."
       )
     }
+  }
+
+  const handleCheckAll = (isChecked) => {
+    if (isChecked) {
+      setSelectedProducts(products.map((product) => product._id))
+    } else {
+      setSelectedProducts([])
+    }
+  }
+
+  const handleCheck = (productId) => {
+    setSelectedProducts(
+      (prev) =>
+        prev.includes(productId)
+          ? prev.filter((id) => id !== productId) // Deselect if already selected
+          : [...prev, productId] // Add to selected if not already selected
+    )
   }
 
   const handleUpdateProduct = async (id) => {
@@ -132,6 +151,13 @@ function AdminProducts() {
         <ul>
           <li className="list-header">
             <span className="justify-center">
+              <input
+                type="checkbox"
+                onChange={(e) => handleCheckAll(e.target.checked)}
+                checked={selectedProducts.length === products.length}
+              />
+            </span>
+            <span>
               <select name="handlinger" id="">
                 <option value="options-title">--</option>
                 <option value="option-1">1</option>
@@ -154,12 +180,16 @@ function AdminProducts() {
                 className={`${index % 2 === 0 ? "dark" : ""}`}
               >
                 <span className="justify-center">
-                  <input type="checkbox" />
+                  <input
+                    type="checkbox"
+                    checked={selectedProducts.includes(product._id)}
+                    onChange={() => handleCheck(product._id)}
+                  />
                 </span>
                 <span>
                   <img className="list-image" src={product.images[0]} alt="" />
-                  {product.name}
                 </span>
+                <span>{product.name}</span>
                 <span>{product.price} kr</span>
                 <span>{product.stock}</span>
                 <span className="justify-center">

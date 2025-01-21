@@ -1,6 +1,7 @@
 import { Outlet, useLocation } from "react-router-dom"
 import Navbar from "./Navbar"
 import AdminNavbar from "./AdminNavbar"
+import Footer from "./Footer"
 import "./Layout.css"
 import { useState } from "react"
 
@@ -26,7 +27,7 @@ function Layout({
   const isLoginPage = location.pathname === "/innlogging"
   const isAdminLogin = location.pathname === "/admin"
 
-  const [isAdmin, setIsAdmin] = useState(true)
+  const [isAdmin, setIsAdmin] = useState(false)
 
   return (
     <div className="layout">
@@ -59,11 +60,7 @@ function Layout({
       )}
 
       {/* Footer */}
-      {!(isLoginPage || isAdminLogin || isAdmin) && (
-        <footer>
-          <p>&copy; 2024 Butikknavn.</p>
-        </footer>
-      )}
+      {!(isLoginPage || isAdminLogin || isAdmin) && <Footer />}
 
       {isAdmin && (
         <>
