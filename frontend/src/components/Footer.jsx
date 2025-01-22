@@ -7,7 +7,7 @@ function Footer() {
       <div className="footer-main">
         <div className="footer-content">
           <div className="footer-list">
-            <h1>Om Oss</h1>
+            <h1>Om oss</h1>
             <p>
               Vi tilbyr høykvalitets søvnprodukter for en bedre natts søvn. Hos
               oss finner du alt du trenger for å sove bedre.
