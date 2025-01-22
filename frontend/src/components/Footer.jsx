@@ -6,18 +6,24 @@ function Footer() {
     <footer>
       <div className="footer-main">
         <div className="footer-content">
-          <div>
+          <div className="footer-list">
+            <h1>Om Oss</h1>
+            <p>
+              Vi tilbyr høykvalitets søvnprodukter for en bedre natts søvn. Hos
+              oss finner du alt du trenger for å sove bedre.
+            </p>
+          </div>
+          <div className="footer-list">
             <h1>Kontakt</h1>
             <ul>
-              <li>Gatenavn 123 Bydel</li>
-              <li>Bynavn</li>
-              <li>Kommune og fylke</li>
-              <li>Postnummer</li>
-              <li>Telefonnummer</li>
-              <li>Epostadresse</li>
+              <li>Gatenavn 123, Bydel</li>
+              <li>By- og/eller kommunenavn</li>
+              <li>1234 Poststed</li>
+              <li>Telefon: +47 123 45 678</li>
+              <li>Epost: kontakt@sleepmate.no</li>
             </ul>
           </div>
-          <div>
+          <div className="footer-list">
             <h1>Meny</h1>
             <ul>
               <li>Hjem</li>
@@ -26,33 +32,34 @@ function Footer() {
               <li>Kontakt</li>
             </ul>
           </div>
-          <div>
-            <h1>Siste innlegg</h1>
-            <ul>
-              <li>Lorem ipsum</li>
-              <li>Lorem ipsum</li>
-              <li>Lorem ipsum</li>
-              <li>Lorem ipsum</li>
-              <li>Lorem ipsum</li>
-              <li>Lorem ipsum</li>
+          <div className="footer-list">
+            <h1>Følg oss</h1>
+            <ul className="icons-list">
+              <li>
+                <i className="fa fa-facebook"></i>
+              </li>
+              <li>
+                <i className="fa fa-instagram"></i>
+              </li>
+              <li>
+                <i className="fa fa-twitter"></i>
+              </li>
+              <li>
+                <i className="fa fa-pinterest"></i>
+              </li>
+              <li>
+                <i className="fa fa-youtube"></i>
+              </li>
             </ul>
-          </div>
-          <div>
-            <h1>Overskrift</h1>
-            <ul>
-              <li>Lorem ipsum</li>
-              <li>Lorem ipsum</li>
-              <li>Lorem ipsum</li>
-              <li>Lorem ipsum</li>
-              <li>Lorem ipsum</li>
-              <li>Lorem ipsum</li>
-            </ul>
+            <div className="register-container">
+              <input type="text" placeholder="Din epostadresse" />
+              <button>Registrer</button>
+            </div>
           </div>
         </div>
-        <div></div>
       </div>
       <div className="footer-footer">
-        <p>&copy; 2024 Butikknavn.</p>
+        <p>&copy; 2024 Butikknavn. Alle rettigheter reservert.</p>
       </div>
     </footer>
   )
