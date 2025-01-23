@@ -11,9 +11,11 @@ function Home({ setSelectedProduct }) {
       {/* Forsidebilde/banner */}
       <section className="hero">
         <div className="heroContent">
-          <h1 className="heroHeader">Overskrift.</h1>
+          <h1 className="heroHeader">Finn din lader.</h1>
+          {/* <h1 className="heroHeader">Overskrift.</h1> */}
           <p className="heroParagraph">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit.
+            Så du kan ha mer overskudd til det som betyr mest for deg.
+            {/* Lorem ipsum dolor sit amet consectetur adipisicing elit. */}
           </p>
           <button className="heroButton" aria-label="Utforsk produkter">
             Utforsk produkter &rarr;
