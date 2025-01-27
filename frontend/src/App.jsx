@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react"
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
+import API from './utils/api'
 import axios from "axios"
 import { CartProvider, useCart } from "./context/CartContext"
 import Layout from "./components/Layout"
@@ -40,7 +41,7 @@ function App() {
   useEffect(() => {
     const fetchItems = async () => {
       try {
-        const response = await axios.get("http://localhost:5000/api/items")
+        const response = await API.get("/items")
         setData(response.data)
         // console.log(response.data)
         // console.log(selectedProduct)

@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react"
 // import data from "../../data/products.json"
+// import API from '../../utils/api'
 // import axios from "axios"
 import { useCart } from "../../context/CartContext"
 import "./ProductPage.css"
@@ -39,7 +40,7 @@ function ProductPage({
     /* useEffect(() => {
     const fetchItems = async () => {
       try {
-        const response = await axios.get("http://localhost:5000/api/items")
+        const response = await API.get("/items")
         setData(response.data)
         // console.log(response.data)
         // console.log(selectedProduct)
