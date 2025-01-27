@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import API from '../utils/api'
+import API from "../utils/api"
 import axios from "axios"
 import { Link } from "react-router-dom"
 import "./ProductsGrid.css"
@@ -45,7 +45,7 @@ function ProductsGrid({ startIndex, setSelectedProduct }) {
               <Link className="link" to={"/produktside"} key={index}>
                 <article
                   className="card"
-                  onClick={() => handleSelectProduct(item.id)}
+                  onClick={() => handleSelectProduct(item._id)}
                 >
                   <figure className="imageContainer">
                     <img

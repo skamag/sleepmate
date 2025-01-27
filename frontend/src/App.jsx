@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
-import API from './utils/api'
+import API from "./utils/api"
 import axios from "axios"
 import { CartProvider, useCart } from "./context/CartContext"
 import Layout from "./components/Layout"

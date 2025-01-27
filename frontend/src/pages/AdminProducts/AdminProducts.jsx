@@ -193,14 +193,14 @@ function AdminProducts() {
                 <span>{product.price} kr</span>
                 <span>{product.stock}</span>
                 <span className="justify-center">
-                  {product.id}
+                  {product._id}
                   <button
                     className="edit-button"
                     onClick={() => {
                       setShowUpdateProduct(true)
                       setUpdateProductId(product._id)
                       setUpdateProduct(
-                        products.find((item) => product.id === item.id)
+                        products.find((item) => product._id === item._id)
                       )
                     }}
                   >

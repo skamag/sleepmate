@@ -146,7 +146,7 @@ function AdminUsers() {
                     setShowUpdateUser(true)
                     setUpdateUserId(user._id)
                     setUpdateUser(
-                      users.find((foundUser) => user.id === foundUser.id)
+                      users.find((foundUser) => user._id === foundUser._id)
                     )
                   }}
                 >

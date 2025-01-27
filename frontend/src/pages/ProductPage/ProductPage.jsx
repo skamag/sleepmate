@@ -10,18 +10,11 @@ function ProductPage({
   resetNavbar,
   selectedProduct,
   setSelectedProduct,
-  // cartProducts,
-  // setCartProducts,
 }) {
-  // const [data, setData] = useState([])
-  // const [loading, setLoading] = useState(true)
-
-  const [selectedItemIndex, setSelectedItemIndex] = useState(selectedProduct)
-  const listImages = data[selectedItemIndex]?.images || []
-  // const listImages = ["/luftrenser-2.webp", "/luftrenser-1.webp"]
+  // const [selectedProduct, setSelectedProduct] = useState(selectedProduct)
+  // const listImages = filteredItem?.images || []
 
   // "States" for hvorvidt det finnes ulike bilder, størrelser og farger
-  // const [isImages, setIsImages] = useState(true)
   const [isSizes, setIsSizes] = useState(true)
   const [isColors, setIsColors] = useState(true)
 
@@ -36,27 +29,6 @@ function ProductPage({
   // Handlevogn
   const { cart, setCart } = useCart()
 
-  {
-    /* useEffect(() => {
-    const fetchItems = async () => {
-      try {
-        const response = await API.get("/items")
-        setData(response.data)
-        // console.log(response.data)
-        // console.log(selectedProduct)
-        // console.log(selectedItemIndex)
-        setLoading(false)
-      } catch (error) {
-        console.error("Error fetching items:", error)
-        setLoading(false)
-      }
-      window.scroll(top)
-    }
-
-    fetchItems()
-  }, []) */
-  }
-
   useEffect(() => {
     const changeProduct = () => {
       handleChangeItem(selectedProduct)
@@ -65,7 +37,6 @@ function ProductPage({
     }
 
     changeProduct()
-    // console.log(selectedProduct)
   }, [selectedProduct])
 
   // Funksjoner for å oppdatere valgt bilder, størrelse eller farge
@@ -79,224 +50,230 @@ function ProductPage({
   }
 
   const handleChangeItem = (e) => {
-    setSelectedItemIndex(e)
     setSelectedProduct(e)
     setSelectedImageIndex(0)
-    // window.scroll(top)
     dropdown && setDropdown(false)
   }
 
   return (
     <section className="productPage">
-      <div className="componentContainer">
-        <div className="productContainer">
-          {/* Bildeseksjon */}
-          <div className="imageSection">
-            {/* Liste med miniatyrbilder */}
-            <div className="imageListContainer">
-              {listImages.map((src, index) => (
-                <button
-                  className="listItem"
-                  key={index}
-                  onClick={() => handleImageClick(index)}
-                  aria-label={`Velg bilde ${index + 1}`}
-                  aria-pressed={index === selectedImageIndex}
-                >
+      {data
+        .filter((item) => item._id === selectedProduct)
+        .map((filteredItem) => (
+          <div className="componentContainer" key={filteredItem._id}>
+            <div className="productContainer">
+              {/* Bildeseksjon */}
+              <div className="imageSection">
+                {/* Liste med miniatyrbilder */}
+                <div className="imageListContainer">
+                  {filteredItem.images.map((src, index) => (
+                    <button
+                      className="listItem"
+                      key={index}
+                      onClick={() => handleImageClick(index)}
+                      aria-label={`Velg bilde ${index + 1}`}
+                      aria-pressed={index === selectedImageIndex}
+                    >
+                      <img
+                        className={
+                          index === selectedImageIndex
+                            ? "selected"
+                            : "not-selected"
+                        }
+                        src={src}
+                        alt={`Miniatyrbilde av produkt ${index + 1}`} // Beskriv bildet
+                      />
+                    </button>
+                  ))}
+                </div>
+                {/* Valgt bilde */}
+                <div className="imageContainer">
                   <img
-                    className={
-                      index === selectedImageIndex ? "selected" : "not-selected"
-                    }
-                    src={src}
-                    alt={`Miniatyrbilde av produkt ${index + 1}`} // Beskriv bildet
+                    src={`${filteredItem.images[selectedImageIndex]}`}
+                    alt={`Valgt produktbilde ${selectedImageIndex + 1}`}
                   />
-                </button>
-              ))}
-            </div>
-            {/* Valgt bilde */}
-            <div className="imageContainer">
-              <img
-                src={`${listImages[selectedImageIndex]}`}
-                alt={`Valgt produktbilde ${selectedImageIndex + 1}`}
-              />
-            </div>
-          </div>
+                </div>
+              </div>
 
-          {/* Produktinformasjon og alternativer m.m. */}
-          <article className="infoContainer">
-            <header className="header">
-              <h1>{data[selectedItemIndex]?.name || "Loading..."}</h1>
-              {/* <h1>Produktnavn</h1> */}
-              <p>Varenummer: xxx / Produktnr.: xxx</p>
-            </header>
-            <div className="priceContainer">
-              <h2>{data[selectedItemIndex]?.price + " kr" || "Loading..."}</h2>
-              {data[selectedItemIndex]?.stock ? (
-                <p>({data[selectedItemIndex]?.stock} på lager)</p>
-              ) : (
-                <p style={{ color: "red" }}>(Ikke på lager)</p>
-              )}
-            </div>
-            <div className="descriptionContainer">
-              <p>
-                {data[selectedItemIndex]?.description || "Loading..."}
-                {/* Lorem Ipsum er standard fylltekst i trykkeribransjen siden
+              {/* Produktinformasjon og alternativer m.m. */}
+              <article className="infoContainer">
+                <header className="header">
+                  <h1>{filteredItem?.name || "Loading..."}</h1>
+                  {/* <h1>Produktnavn</h1> */}
+                  <p>Varenummer: xxx / Produktnr.: xxx</p>
+                </header>
+                <div className="priceContainer">
+                  <h2>{filteredItem?.price + " kr" || "Loading..."}</h2>
+                  {filteredItem?.stock ? (
+                    <p>({filteredItem?.stock} på lager)</p>
+                  ) : (
+                    <p style={{ color: "red" }}>(Ikke på lager)</p>
+                  )}
+                </div>
+                <div className="descriptionContainer">
+                  <p>
+                    {filteredItem?.description || "Loading..."}
+                    {/* Lorem Ipsum er standard fylltekst i trykkeribransjen siden
                 1500-tallet. */}
-              </p>
-            </div>
+                  </p>
+                </div>
 
-            {/* Alternativer for størrelse og farge */}
-            {(isSizes || isColors) && data[selectedItemIndex] && (
-              <div className="alternativesContainer">
-                {isSizes && data[selectedItemIndex].sizes?.length > 0 ? (
-                  <div className="sizes">
-                    <div className="alternativesHeader">
-                      <b>Størrelse:</b>
-                    </div>
-                    <div className="sizeButtons">
-                      {data[selectedItemIndex].sizes.map((size, index) => (
-                        <button
-                          key={index}
-                          className={
-                            index === selectedSizeIndex
-                              ? "selected"
-                              : "not-selected"
-                          }
-                          onClick={() => handleSizeClick(index)}
-                          aria-label={`Velg størrelse ${size}`}
-                          aria-pressed={index === selectedSizeIndex}
-                        >
-                          {size}
-                        </button>
-                      ))}
-                    </div>
+                {/* Alternativer for størrelse og farge */}
+                {(isSizes || isColors) && filteredItem && (
+                  <div className="alternativesContainer">
+                    {isSizes && filteredItem.sizes?.length > 0 ? (
+                      <div className="sizes">
+                        <div className="alternativesHeader">
+                          <b>Størrelse:</b>
+                        </div>
+                        <div className="sizeButtons">
+                          {filteredItem.sizes.map((size, index) => (
+                            <button
+                              key={index}
+                              className={
+                                index === selectedSizeIndex
+                                  ? "selected"
+                                  : "not-selected"
+                              }
+                              onClick={() => handleSizeClick(index)}
+                              aria-label={`Velg størrelse ${size}`}
+                              aria-pressed={index === selectedSizeIndex}
+                            >
+                              {size}
+                            </button>
+                          ))}
+                        </div>
+                      </div>
+                    ) : (
+                      <p className="noOptions">
+                        Ingen størrelser tilgjengelige
+                      </p>
+                    )}
+
+                    {isColors && filteredItem.colors?.length > 0 ? (
+                      <div className="colors">
+                        <div className="alternativesHeader">
+                          <b>Farge:</b>
+                        </div>
+                        <div className="colorButtons">
+                          {filteredItem.colors.map((color, index) => (
+                            <button
+                              key={index}
+                              className={
+                                index === selectedColorIndex
+                                  ? "selected"
+                                  : "not-selected"
+                              }
+                              style={{ backgroundColor: color }}
+                              onClick={() => handleColorClick(index)}
+                              aria-label={`Velg farge ${index + 1}`} //endre?
+                              aria-pressed={index === selectedColorIndex}
+                            ></button>
+                          ))}
+                        </div>
+                      </div>
+                    ) : (
+                      <p className="noOptions">Ingen farger tilgjengelige</p>
+                    )}
                   </div>
-                ) : (
-                  <p className="noOptions">Ingen størrelser tilgjengelige</p>
                 )}
 
-                {isColors && data[selectedItemIndex].colors?.length > 0 ? (
-                  <div className="colors">
-                    <div className="alternativesHeader">
-                      <b>Farge:</b>
-                    </div>
-                    <div className="colorButtons">
-                      {data[selectedItemIndex].colors.map((color, index) => (
-                        <button
-                          key={index}
-                          className={
-                            index === selectedColorIndex
-                              ? "selected"
-                              : "not-selected"
-                          }
-                          style={{ backgroundColor: color }}
-                          onClick={() => handleColorClick(index)}
-                          aria-label={`Velg farge ${index + 1}`} //endre?
-                          aria-pressed={index === selectedColorIndex}
-                        ></button>
-                      ))}
-                    </div>
+                {/* "Legg til i handlekurv"-knapp */}
+                <div className="buttonContainer">
+                  <button
+                    className="button"
+                    aria-label="Legg til i handlekurv"
+                    onClick={() => {
+                      const selectedItem = filteredItem
+                      const alreadyInCart = cart.some(
+                        (product) => product._id === selectedItem._id
+                      )
+
+                      if (!alreadyInCart) {
+                        setCart([...cart, selectedItem])
+                        alert("Varen ble lagt til i handlevognen!")
+                      } else {
+                        alert("Varen er allerede i handlevognen!")
+                      }
+
+                      // setCart([...cart, selectedItem])
+                      // alert("Varen ble lagt til i handlevognen!")
+                    }}
+                  >
+                    <h3>Legg til i handlekurv</h3>
+                  </button>
+                </div>
+
+                {/* Dropdown-knapp */}
+                <button
+                  className="dropdownContainer"
+                  onClick={() => toggleDropdown()}
+                  aria-label="Åpne dropdown-meny"
+                  aria-expanded={dropdown}
+                >
+                  <h3 className="dropdownTitle">Dropdown tittel</h3>
+                  <div className="dropdownButton">
+                    {dropdown ? <h2>&#8722;</h2> : <h2>&#43;</h2>}
                   </div>
-                ) : (
-                  <p className="noOptions">Ingen farger tilgjengelige</p>
+                </button>
+
+                {/* Dropdown-meny */}
+                {dropdown && (
+                  <div className="dropdownParagraphContainer">
+                    <p className="dropdownParagraph">
+                      Lorem Ipsum er en fylltekst brukt i trykkeri- og
+                      designindustrien.
+                    </p>
+                  </div>
                 )}
-              </div>
-            )}
-
-            {/* "Legg til i handlekurv"-knapp */}
-            <div className="buttonContainer">
-              <button
-                className="button"
-                aria-label="Legg til i handlekurv"
-                onClick={() => {
-                  const selectedItem = data[selectedItemIndex]
-                  const alreadyInCart = cart.some(
-                    (product) => product.id === selectedItem.id
-                  )
-
-                  if (!alreadyInCart) {
-                    setCart([...cart, selectedItem])
-                    alert("Varen ble lagt til i handlevognen!")
-                  } else {
-                    alert("Varen er allerede i handlevognen!")
-                  }
-
-                  // setCart([...cart, selectedItem])
-                  // alert("Varen ble lagt til i handlevognen!")
-                }}
-              >
-                <h3>Legg til i handlekurv</h3>
-              </button>
+              </article>
             </div>
 
-            {/* Dropdown-knapp */}
-            <button
-              className="dropdownContainer"
-              onClick={() => toggleDropdown()}
-              aria-label="Åpne dropdown-meny"
-              aria-expanded={dropdown}
-            >
-              <h3 className="dropdownTitle">Dropdown tittel</h3>
-              <div className="dropdownButton">
-                {dropdown ? <h2>&#8722;</h2> : <h2>&#43;</h2>}
-              </div>
-            </button>
-
-            {/* Dropdown-meny */}
-            {dropdown && (
-              <div className="dropdownParagraphContainer">
-                <p className="dropdownParagraph">
-                  Lorem Ipsum er en fylltekst brukt i trykkeri- og
-                  designindustrien.
-                </p>
-              </div>
-            )}
-          </article>
-        </div>
-
-        {/* Lignende produkter-seksjon */}
-        <div className="similarProductsContainer">
-          <h1>Lignende produkter</h1>
-          <div className="cardsContainer">
-            {/* {[
+            {/* Lignende produkter-seksjon */}
+            <div className="similarProductsContainer">
+              <h1>Lignende produkter</h1>
+              <div className="cardsContainer">
+                {/* {[
               "/bærbar-hvitsøyemaskin.webp",
               "/aromaterapi-diffuser.webp",
               "/søvndagslyslampe-1.webp",
               "/søvnsensor.webp",
             ].map((src, index) => ( */}
-            {data
-              .filter(
-                (item) =>
-                  item.category === data[selectedProduct].category &&
-                  item.id !== data[selectedItemIndex].id
-              )
-              .slice(0, 4)
-              .map((item, index) => (
-                <article
-                  className="card"
-                  key={index}
-                  onClick={() => handleChangeItem(item.id)}
-                  // onClick={(index) => handleChangeItem(index)}
-                >
-                  <figure className="imageContainer">
-                    <img
-                      src={item.images[0]}
-                      alt={`Lignende produkt ${index + 1}`}
-                      aria-label={`Se detaljer om lignende produkt ${
-                        index + 1
-                      }`}
-                    />
-                  </figure>
-                  <div className="textContainer">
-                    <p>{item.name}</p>
-                    <p>
-                      <strong>{item.price} kr</strong>
-                    </p>
-                  </div>
-                </article>
-              ))}
+                {data
+                  .filter(
+                    (item) =>
+                      item.category === filteredItem.category &&
+                      item.id !== filteredItem.id
+                  )
+                  .slice(0, 4)
+                  .map((item, index) => (
+                    <article
+                      className="card"
+                      key={index}
+                      onClick={() => handleChangeItem(item._id)}
+                      // onClick={(index) => handleChangeItem(index)}
+                    >
+                      <figure className="imageContainer">
+                        <img
+                          src={item.images[0]}
+                          alt={`Lignende produkt ${index + 1}`}
+                          aria-label={`Se detaljer om lignende produkt ${
+                            index + 1
+                          }`}
+                        />
+                      </figure>
+                      <div className="textContainer">
+                        <p>{item.name}</p>
+                        <p>
+                          <strong>{item.price} kr</strong>
+                        </p>
+                      </div>
+                    </article>
+                  ))}
+              </div>
+            </div>
           </div>
-        </div>
-      </div>
+        ))}
     </section>
   )
 }

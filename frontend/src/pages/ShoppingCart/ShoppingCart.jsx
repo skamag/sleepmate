@@ -35,7 +35,7 @@ function ShoppingCart({
     try {
       const response = await axios.post("http://localhost:5000/api/purchase", {
         cartItems: cart.map((item, index) => ({
-          productId: item.id,
+          productId: item._id,
           quantity: productAmount[index] || 1,
         })),
       })
@@ -85,7 +85,7 @@ function ShoppingCart({
           {/* {cartProducts.map((product) => ( */}
           {/* {cart.map((product, index) => ( */}
           {cart.map((product, index) => (
-            <div className="cartListRow" key={product.id}>
+            <div className="cartListRow" key={product._id}>
               {/* {() => addProductAmount()} */}
 
               <div className="imageContainer">
@@ -139,7 +139,7 @@ function ShoppingCart({
                   <div className="cartListRemove">
                     <button
                       onClick={() =>
-                        setCart(cart.filter((item) => item.id !== product.id))
+                        setCart(cart.filter((item) => item._id !== product._id))
                       }
                     >
                       <p>&#x2715;</p>
