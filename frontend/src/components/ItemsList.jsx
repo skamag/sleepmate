@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react"
+import API from '../utils/api'
 import axios from "axios"
 import styles from "./ItemsList.module.css"
 
@@ -9,7 +10,7 @@ const ItemsList = () => {
   useEffect(() => {
     const fetchItems = async () => {
       try {
-        const response = await axios.get("http://localhost:5000/api/items")
+        const response = await API.get("/items")
         setItems(response.data)
         setLoading(false)
       } catch (error) {
