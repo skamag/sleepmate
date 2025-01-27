@@ -243,7 +243,7 @@ function ProductPage({
                   .filter(
                     (item) =>
                       item.category === filteredItem.category &&
-                      item.id !== filteredItem.id
+                      item._id !== filteredItem._id
                   )
                   .slice(0, 4)
                   .map((item, index) => (

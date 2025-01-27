@@ -32,37 +32,35 @@ function ProductsGrid({ startIndex, setSelectedProduct }) {
     <>
       <div className="productsGridContainer">
         <div className="cardsContainer">
-          {/* {[
-    "/bærbar-hvitsøyemaskin.webp",
-    "/aromaterapi-diffuser.webp",
-    "/søvndagslyslampe-1.webp",
-    "/søvnsensor.webp",
-  ].map((src, index) => ( */}
-          {data
-            .filter((item) => item.isFeatured)
-            .slice(startIndex, startIndex + 4)
-            .map((item, index) => (
-              <Link className="link" to={"/produktside"} key={index}>
-                <article
-                  className="card"
-                  onClick={() => handleSelectProduct(item._id)}
-                >
-                  <figure className="imageContainer">
-                    <img
-                      src={item.images[0]}
-                      alt={`Lignende produkt ${index + 1}`}
-                      aria-label={`Gå til lignende produkt ${index + 1}`}
-                    />
-                  </figure>
-                  <div className="textContainer">
-                    <p>{item.name}</p>
-                    <p>
-                      <strong>{item.price} kr</strong>
-                    </p>
-                  </div>
-                </article>
-              </Link>
-            ))}
+          {loading ? (
+            <p>Loading...</p>
+          ) : (
+            data
+              .filter((item) => item.isFeatured)
+              .slice(startIndex, startIndex + 4)
+              .map((item, index) => (
+                <Link className="link" to={"/produktside"} key={index}>
+                  <article
+                    className="card"
+                    onClick={() => handleSelectProduct(item._id)}
+                  >
+                    <figure className="imageContainer">
+                      <img
+                        src={item.images[0]}
+                        alt={`Lignende produkt ${index + 1}`}
+                        aria-label={`Gå til lignende produkt ${index + 1}`}
+                      />
+                    </figure>
+                    <div className="textContainer">
+                      <p>{item.name}</p>
+                      <p>
+                        <strong>{item.price} kr</strong>
+                      </p>
+                    </div>
+                  </article>
+                </Link>
+              ))
+          )}
         </div>
       </div>
     </>
