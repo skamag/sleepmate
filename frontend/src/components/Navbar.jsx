@@ -155,10 +155,10 @@ function Navbar({
                       .map((filteredItem) => (
                         <Link
                           className="searchResult link"
-                          key={filteredItem.id}
+                          key={filteredItem._id}
                           to={"/produktside"}
                           onClick={() => {
-                            setSelectedProduct(filteredItem.id)
+                            setSelectedProduct(filteredItem._id)
                             resetNavbar()
                           }}
                         >
@@ -226,7 +226,7 @@ function Navbar({
                     {cart.map((item) => (
                       <div
                         className="previewProductCard"
-                        key={item.id + " preview"}
+                        key={item._id + " preview"}
                       >
                         <div className="cardImage">
                           <img src={item.images[0]} />
@@ -237,10 +237,10 @@ function Navbar({
                           className="cartRemove"
                           onClick={() =>
                             setCart(
-                              cart.filter((product) => product.id !== item.id)
+                              cart.filter((product) => product._id !== item._id)
                             )
                           }
-                          aria-label={`Fjern ${item.name} (id: '${item.id}') fra handlevogn`}
+                          aria-label={`Fjern ${item.name} (id: '${item._id}') fra handlevogn`}
                         >
                           &#10006;
                         </button>

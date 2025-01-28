@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react"
-import API from '../utils/api'
+import API from "../utils/api"
 import axios from "axios"
 import styles from "./ItemsList.module.css"
 
@@ -31,7 +31,7 @@ const ItemsList = () => {
       <h1>Items</h1>
       <ul>
         {items.map((item) => (
-          <li className={styles.listItem} key={item.id}>
+          <li className={styles.listItem} key={item._id}>
             <div className={styles.imageContainer}>
               <img src={item.images[0]} alt={item.name} />
             </div>
