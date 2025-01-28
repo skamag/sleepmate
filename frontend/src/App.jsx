@@ -61,6 +61,8 @@ function App() {
     }
 
     fetchItems()
+
+    console.log(data)
   }, [isLoggedIn])
 
   const resetNavbar = () => {

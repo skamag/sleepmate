@@ -81,10 +81,7 @@ app.post("/api/purchase", async (req, res) => {
 
 // Connect to MongoDB and Start Server
 mongoose
-  .connect(process.env.MONGO_URI, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  })
+  .connect(process.env.MONGO_URI)
   .then(() => {
     const PORT = process.env.PORT || 5000
     app.listen(PORT, () => console.log(`Server running on port ${PORT}`))

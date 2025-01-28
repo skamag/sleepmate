@@ -1,3 +1,4 @@
+// import aboutImage from '/about-morning.jpg'
 import "./About.css"
 
 function About() {
@@ -5,18 +6,21 @@ function About() {
     <section className="about-container">
       <div className={"section"}>
         <h1 className={"heading"}>Om oss</h1>
-        <p className={"text"}>
-          Velkommen til SleepStore – din destinasjon for søvnrelaterte produkter
+        <p className={"heading-text"}>
+          Velkommen til Butikknavn – din destinasjon for søvnrelaterte produkter
           av høy kvalitet. Vi er dedikerte til å hjelpe deg med å få en bedre
           natts søvn ved å tilby produkter som er nøye utvalgt for komfort,
           funksjonalitet og innovasjon.
         </p>
       </div>
+      <div className={"about-main"}>
+      <div className={"text-sections"}>
+      
 
       <div className={"section"}>
         <h2 className={"subheading"}>Vår Historie</h2>
         <p className={"text"}>
-          SleepStore startet med en enkel idé: å forbedre hverdagen ved å gi
+          Butikknavn startet med en enkel idé: å forbedre hverdagen ved å gi
           mennesker den beste søvnen de kan få. Etter å ha opplevd søvnproblemer
           selv, ønsket vi å skape et sted hvor folk kan finne alt de trenger for
           en avslappende natt. Siden oppstarten har vi jobbet hardt for å tilby
@@ -49,7 +53,10 @@ function About() {
           Gjennom å tilby innovative løsninger og eksepsjonell kundeservice,
           ønsker vi å forbedre søvnen til alle våre kunder.
         </p>
-      </div>
+      </div></div>
+      <div className="about-image-container">
+  {/* <img src={aboutImage} alt="" /> */}
+</div></div>
     </section>
   )
 }

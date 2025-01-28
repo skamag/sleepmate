@@ -4,6 +4,8 @@ import axios from "axios"
 //   baseURL: process.env.REACT_APP_API_URL || "http://localhost:5000/api",
 // })
 
+console.log(process.env.NODE_ENV)
+
 const API =
   process.env.NODE_ENV === "production"
     ? axios.create({
