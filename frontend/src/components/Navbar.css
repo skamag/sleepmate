@@ -239,10 +239,10 @@
   }
 
   /* Vise/skjule ulike logo-varianter basert på skjermstørrelse */
-  .navbar .logo-wide {
+  .navbar .logo .logo-wide {
     display: none;
   }
-  .navbar .logo-narrow {
+  .navbar .logo .logo-narrow {
     display: block;
     margin-right: 1rem;
   }
