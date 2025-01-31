@@ -1,0 +1,77 @@
+.contact-section{
+padding: 2.5% 5% 5% 5%;
+display: flex;
+flex-direction: column;
+gap: 4rem;
+}
+.contact-section .contact-header{
+    font-size: 2rem;
+text-align: center;
+font-weight: 300;
+margin-bottom: 1rem;
+}
+.contact-section .contact-ingress{
+text-align: center;
+
+}
+.contact-main{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+}
+.contact-main .contact-info{
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+.contact-main .location, .contact-main .follow-us{
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+.contact-main .follow-us .socials-container{
+    display: flex;
+    gap: 0.5rem;
+}
+.contact-main .follow-us .socials-container i{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 2rem;
+    width: 2rem;
+    border-radius: 50%;
+    font-size: 1rem;
+    color: white;
+    background-color: #333;
+}
+.contact-main .contact-form{
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+.contact-main input, .contact-main textarea{
+    padding: 1rem;
+    border: none;
+    border-radius: 0.25rem;
+    resize: none;
+    background-color: rgb(240, 240, 240);
+}
+.contact-main input:focus, .contact-main textarea:focus{
+    outline: none;
+}
+.contact-main .submit-button{
+    background-color: #24a0ed;
+    cursor: pointer;
+    width: fit-content;
+    padding: 1rem 2rem;
+    color: white;
+    font-weight: bold;
+}
+.contact-main .submit-button:hover{
+    background-color: #2fafff;
+}
+.contact-main .submit-button:active{
+    background-color: #258ccb;
+}
