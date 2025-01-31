@@ -95,12 +95,15 @@ width: 50%;
     }
 }
 @media screen and (max-width: 900px) {
+    .contact-section{
+        padding: 5%;
+        }
     .contact-section .contact-ingress{
         width: 75%;
         }
     .contact-main{
         display: flex;
-        gap: 2rem;
+        gap: 1rem;
     }
     .contact-main .contact-info{
         flex-direction: row;
