@@ -26,7 +26,7 @@ text-align: center;
 }
 .about-image-container{
   height: 100%;
-  background-image: url('../../../public/about-morning.jpg');
+  background-image: url('../../../public/about-morning.webp');
   background-size: cover;
   background-position: center;
 }

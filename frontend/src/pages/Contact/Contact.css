@@ -2,7 +2,7 @@
 padding: 2.5% 5% 5% 5%;
 display: flex;
 flex-direction: column;
-gap: 4rem;
+gap: 2rem;
 }
 .contact-section .contact-header{
     font-size: 2rem;
@@ -12,18 +12,28 @@ margin-bottom: 1rem;
 }
 .contact-section .contact-ingress{
 text-align: center;
-
+margin: 0 auto;
+width: 50%;
 }
 .contact-main{
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    display: flex;
+    flex-direction: column;
     gap: 1rem;
 }
 .contact-main .contact-info{
     padding: 1rem;
     display: flex;
-    flex-direction: column;
-    gap: 2rem;
+    justify-content: center;
+    gap: 8rem;
+    text-align: center;
+}
+.contact-main .contact-info .image-container{
+    height: 5rem;
+    position: relative;
+}
+.contact-main .contact-info .image-container img{
+    height: 100%;
+    padding: 1rem 0;
 }
 .contact-main .location, .contact-main .follow-us{
     display: flex;
@@ -49,6 +59,9 @@ text-align: center;
     padding: 1rem;
     display: flex;
     flex-direction: column;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
     gap: 1rem;
 }
 .contact-main input, .contact-main textarea{
@@ -68,10 +81,53 @@ text-align: center;
     padding: 1rem 2rem;
     color: white;
     font-weight: bold;
+    place-self: flex-end;
 }
 .contact-main .submit-button:hover{
     background-color: #2fafff;
 }
 .contact-main .submit-button:active{
     background-color: #258ccb;
+}
+@media screen and (max-width: 1200px) {
+    .contact-main .contact-form{
+        width: 66.7%;
+    }
+}
+@media screen and (max-width: 900px) {
+    .contact-section .contact-ingress{
+        width: 75%;
+        }
+    .contact-main{
+        display: flex;
+        gap: 2rem;
+    }
+    .contact-main .contact-info{
+        flex-direction: row;
+        gap: 4rem;
+    }
+    .contact-main .contact-info .image-container{
+        height: 4rem;
+    }
+    .contact-main .contact-form{
+        width: 83.3%;
+    }
+}
+@media screen and (max-width: 600px) {
+    .contact-main{
+        flex-direction: column-reverse;
+    }
+    .contact-section .contact-ingress{
+        width: 100%;
+        }
+    .contact-main .contact-info{
+        flex-direction: column;
+        gap: 2rem;
+    }
+    .contact-main .contact-info .image-container{
+        height: 5rem;
+    }
+    .contact-main .contact-form{
+        width: 100%;
+    }
 }
