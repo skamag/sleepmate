@@ -9,7 +9,7 @@ console.log(process.env.NODE_ENV)
 const API =
   process.env.NODE_ENV === "production"
     ? axios.create({
-        baseURL: "https://sleepmate-render-production.up.railway.app",
+        baseURL: "https://sleepmate-render-production.up.railway.app/api",
       })
     : axios.create({
         baseURL: "http://localhost:5000/api",
