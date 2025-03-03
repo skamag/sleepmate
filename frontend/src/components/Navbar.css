@@ -195,9 +195,9 @@
   .navLinksContainer {
     position: fixed;
     /* top: 100px; */
-    top: 0;
+    top: -50vh;
     right: 0;
-    bottom: 0;
+    bottom: -50vh;
     width: 50%;
     min-width: fit-content;
     visibility: hidden;
@@ -211,7 +211,7 @@
     justify-content: center;
     padding: 2rem;
     height: 100%;
-    font-size: 2rem;
+    font-size: 1.25rem;
   }
   .cartSection .cartText-wide {
     display: none;
