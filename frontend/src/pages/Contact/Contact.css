@@ -24,11 +24,11 @@ width: 50%;
     padding: 1rem;
     display: flex;
     justify-content: center;
-    gap: 8rem;
+    gap: 6rem;
     text-align: center;
 }
 .contact-main .contact-info .image-container{
-    height: 5rem;
+    height: 4rem;
     position: relative;
 }
 .contact-main .contact-info .image-container img{
@@ -61,7 +61,7 @@ width: 50%;
     flex-direction: column;
     margin-left: auto;
     margin-right: auto;
-    width: 50%;
+    width: 40%;
     gap: 1rem;
 }
 .contact-main input, .contact-main textarea{
@@ -91,7 +91,7 @@ width: 50%;
 }
 @media screen and (max-width: 1200px) {
     .contact-main .contact-form{
-        width: 66.7%;
+        width: 60%;
     }
 }
 @media screen and (max-width: 900px) {
@@ -113,7 +113,7 @@ width: 50%;
         height: 4rem;
     }
     .contact-main .contact-form{
-        width: 83.3%;
+        width: 80%;
     }
 }
 @media screen and (max-width: 600px) {
@@ -128,7 +128,7 @@ width: 50%;
         gap: 2rem;
     }
     .contact-main .contact-info .image-container{
-        height: 5rem;
+        height: 4rem;
     }
     .contact-main .contact-form{
         width: 100%;
