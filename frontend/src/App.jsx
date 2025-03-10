@@ -62,7 +62,7 @@ function App() {
 
     fetchItems()
 
-    console.log(data)
+    // console.log(data)
   }, [isLoggedIn])
 
   const resetNavbar = () => {
@@ -115,7 +115,12 @@ function App() {
               element={<Home setSelectedProduct={setSelectedProduct} />}
             />
             <Route path="/om" element={<About />} />
-            <Route path="/produkter" element={<Products />} />
+            <Route
+              path="/produkter"
+              element={
+                <Products data={data} setSelectedProduct={setSelectedProduct} />
+              }
+            />
             <Route path="/kontakt" element={<Contact />} />
             <Route
               path="/innlogging"
