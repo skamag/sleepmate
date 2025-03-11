@@ -27,18 +27,18 @@ function Products({ data, setSelectedProduct }) {
           <ul>
             <li>SøvnPro+</li>
             <li>Stillhet Lux</li>
-            <li>Luksus Svart</li>
+            {/* <li>Luksus Svart</li> */}
             <li>SilentSleep</li>
             <li>NattFred</li>
             <li>Søvnbølge</li>
             <li>SøvnTracker Pro</li>
-            <li>Soloppgang Pro</li>
+            {/* <li>Soloppgang Pro</li> */}
             <li>SøvnEssens</li>
             <li>Arctic Cool Pillow</li>
-            <li>Fersk Søvn</li>
-            <li>Ro Søvn</li>
-            <li>Pustende Komfort</li>
-            <li>Dyp Varm Komfort</li>
+            {/* <li>Fersk Søvn</li> */}
+            {/* <li>Ro Søvn</li> */}
+            {/* <li>Pustende Komfort</li> */}
+            {/* <li>Dyp Varm Komfort</li> */}
             <li>SkyForm</li>
           </ul>
         </nav>
@@ -59,6 +59,9 @@ function Products({ data, setSelectedProduct }) {
             </span>
           </p>
         </div>
+        <button className="filters-button">
+          <i className="fa-solid fa-filter"></i>
+        </button>
         <div className="products-grid">
           {products.map((item) => (
             <Link className="link" to={"/produktside"} key={item.id}>
