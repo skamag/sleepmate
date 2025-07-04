@@ -98,7 +98,7 @@ function App() {
         <Routes>
           <Route
             path="/oppvaakning"
-            element={<WakeUp data={data} setIsAsleep={setIsAsleep} />}
+            element={<WakeUp shouldRedirect={data.length > 0} />}
           />
 
           {data.length === 0 ? (
