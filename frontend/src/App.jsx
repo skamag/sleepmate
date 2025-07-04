@@ -69,8 +69,9 @@ function App() {
 
     fetchItems()
 
-    // console.log(data)
-  }, [isLoggedIn])
+    console.log(data)
+  }, [])
+  // }, [isLoggedIn])
 
   const resetNavbar = () => {
     setIsSearch(false)
@@ -95,7 +96,10 @@ function App() {
     <CartProvider>
       <Router>
         <Routes>
-          <Route path="/oppvaakning" element={<WakeUp />} />
+          <Route
+            path="/oppvaakning"
+            element={<WakeUp data={data} setIsAsleep={setIsAsleep} />}
+          />
 
           {data.length === 0 ? (
             <Route path="/" element={<Navigate to="/oppvaakning" replace />} />
