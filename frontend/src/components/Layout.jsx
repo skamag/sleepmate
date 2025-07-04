@@ -1,4 +1,5 @@
 import { Outlet, useLocation } from "react-router-dom"
+import WakeUp from "../pages/WakeUp/WakeUp"
 import Navbar from "./Navbar"
 import AdminNavbar from "./AdminNavbar"
 import Footer from "./Footer"
@@ -53,6 +54,7 @@ function Layout({
       )}
 
       {/* Main */}
+
       {!isAdmin && (
         <main>
           <Outlet />

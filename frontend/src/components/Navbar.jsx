@@ -58,8 +58,12 @@ function Navbar({
       <div className="navbar">
         <h1 className="logo">
           <Link onClick={() => resetNavbar()} className="link" to="/">
-            <div className="logo-wide">SLEEP<span style={{color:"#0066b2"}}>MATE</span></div>
-            <div className="logo-narrow">S<span style={{color:"#0066b2"}}>M</span></div>
+            <div className="logo-wide">
+              SLEEP<span style={{ color: "#0066b2" }}>MATE</span>
+            </div>
+            <div className="logo-narrow">
+              S<span style={{ color: "#0066b2" }}>M</span>
+            </div>
             {/* <div className="logo-wide">BUTIKKNAVN</div>
             <div className="logo-narrow">BN</div> */}
           </Link>
