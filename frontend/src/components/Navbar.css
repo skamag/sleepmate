@@ -85,6 +85,7 @@
 /* Vise/skjule ulike innloggingsknappvarianter basert på skjermstørrelse */
 .loginContainer .login-wide {
   display: block;
+  text-wrap: nowrap;
 }
 .loginContainer .login-narrow {
   display: none;
@@ -249,6 +250,23 @@
 }
 
 /* Søkefelt aktiv/inaktiv */
+.searchLoginCart-inactive {
+  width: auto;
+  margin: 0;
+}
+.searchLoginCart-active {
+  width: 100%;
+  margin-left: 2rem;
+}
+
+.searchContainer-inactive {
+  background-color: green;
+}
+.searchContainer-active {
+  display: block;
+  width: 100%;
+}
+
 .search-inactive {
   padding: 0;
   border-radius: 0;
@@ -259,6 +277,15 @@
 }
 .search-inactive input {
   display: none;
+}
+
+.search-active {
+  width: 100%;
+  background-color: green;
+}
+.search-active input {
+  display: block;
+  width: 100%;
 }
 
 .navList-toggle {
