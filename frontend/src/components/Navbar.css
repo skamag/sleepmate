@@ -258,10 +258,10 @@
   width: 100%;
   margin-left: 2rem;
 }
-
+/* 
 .searchContainer-inactive {
   background-color: green;
-}
+} */
 .searchContainer-active {
   display: block;
   width: 100%;
@@ -281,7 +281,7 @@
 
 .search-active {
   width: 100%;
-  background-color: green;
+  /* background-color: green; */
 }
 .search-active input {
   display: block;

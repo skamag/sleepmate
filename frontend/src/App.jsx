@@ -101,7 +101,7 @@ function App() {
             element={<WakeUp shouldRedirect={data.length > 0} />}
           />
 
-          {data.length === -1 ? (
+          {data.length === 0 ? (
             <Route path="/" element={<Navigate to="/oppvaakning" replace />} />
           ) : (
             <Route
